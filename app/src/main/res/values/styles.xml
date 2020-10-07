@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="botones">
+        <item name="android:scaleType">fitCenter</item>
+
+    </style>
+
 </resources>
