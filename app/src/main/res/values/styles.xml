@@ -9,7 +9,8 @@
 
     <style name="botones">
         <item name="android:scaleType">fitCenter</item>
-
+        <item name="android:layout_width">@dimen/medio</item>
+        <item name="android:layout_height">@dimen/medio</item>
     </style>
 
 </resources>
