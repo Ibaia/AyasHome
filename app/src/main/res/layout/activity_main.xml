@@ -17,19 +17,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0">
 
-    <ImageView
-        android:id="@+id/imgPerfil"
-        android:layout_width="50dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/imgDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/toolbarMain"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/imgPerfil"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:contentDescription="@string/imgDescription"
+            android:focusable="true"
+            android:translationX="342dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="23dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo"
+            android:layout_gravity="start"
+            android:id="@+id/tvTitulo" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
         android:id="@+id/frameLayoutList"

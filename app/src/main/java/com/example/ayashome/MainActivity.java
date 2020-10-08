@@ -1,15 +1,21 @@
 package com.example.ayashome;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
     FrameLayout listaServicios;
-    private Toolbar MainToolbar;
+    private Toolbar mainToolbar;
+    private ImageView fotoPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +24,23 @@ public class MainActivity extends AppCompatActivity {
 
         listaServicios = findViewById(R.id.frameLayoutList);
 
-        final Toolbar MainToolbar = findViewById(R.id.toolbarMain);
-        MainToolbar.setTitle("Aya's Home");
+        //Se añaden los fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        ListServicioFragment fragment = new ListServicioFragment();
+        fragmentTransaction.add(R.id.frameLayoutList, fragment);
+        fragmentTransaction.commit();
+
+        fotoPerfil = findViewById(R.id.imgPerfil);
+
+        fotoPerfil.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);
+                startActivity(intentPerfil);
+            }
+        });
 
     }
+
 }
