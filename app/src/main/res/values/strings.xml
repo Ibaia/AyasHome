@@ -2,6 +2,12 @@
     <string name="app_name">AyasHome</string>
     <string name="imgDescription">Perfil</string>
     <string name="titulo">"Aya's home"</string>
+    <string name="fecha">Fecha:</string>
+    <string name="fechaEntrada">Fecha de entrada:</string>
+    <string name="fechaSalida">Fecha de salida:</string>
+    <string name="catering">Catering:</string>
+    <string name="logOut">Cerrar Sesión</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
