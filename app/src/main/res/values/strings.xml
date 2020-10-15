@@ -7,6 +7,9 @@
     <string name="fechaSalida">Fecha de salida:</string>
     <string name="catering">Catering:</string>
     <string name="logOut">Cerrar Sesión</string>
+    <string name="cortes">Cortes</string>
+    <string name="cortesdescrip">Asesoramiento, diseño y corte de pelo para mujer y hombre, atendiendo a tu estructura facial y a las tendencias más actuales.</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
