@@ -28,10 +28,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        ListServicioFragment fragment = new ListServicioFragment();
-        fragmentTransaction.add(R.id.frameLayoutList, fragment);
-        fragmentTransaction.commit();
-
         fotoPerfil = findViewById(R.id.imgPerfil);
 
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
