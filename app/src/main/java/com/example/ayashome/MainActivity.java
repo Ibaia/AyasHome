@@ -34,14 +34,13 @@ import java.util.List;
 
 import static com.example.ayashome.Values.*;
 
-public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity {
 
     FrameLayout listaServicios;
     private Toolbar mainToolbar;
     private ImageView fotoPerfil;
 
-    SignInButton gButton;
-    GoogleSignInClient mGoogleSignInClient;
+    static GoogleSignInClient mGoogleSignInClient;
     FirebaseFirestore db;
 
     RecyclerView rvVertical;
@@ -163,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            //updateUI(account);
+            updateUI(account);
             goReservas();
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -183,19 +182,18 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
+        updateUI(account);
     }
 
-/*    private void updateUI(GoogleSignInAccount account)
+    private void updateUI(GoogleSignInAccount account)
     {
-        if(account != null)
+        if(account == null)
         {
-            fotoPerfil.setImageDrawable();
+            fotoPerfil.setImageResource(R.drawable.user);
         }
         else
         {
-            Drawable img = new Drawable()
-            fotoPerfil.setImageDrawable();
+            fotoPerfil.setImageResource(R.drawable.comida);
         }
-    }*/
+    }
 }
