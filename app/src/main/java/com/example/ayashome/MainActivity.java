@@ -1,13 +1,10 @@
 package com.example.ayashome;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,30 +12,33 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.ayashome.adapter.MainRecyclerAdapter;
 import com.example.ayashome.model.ItemsServicios;
 import com.example.ayashome.model.Servicios;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ayashome.Values.*;
+import static com.example.ayashome.Values.RC_SIGN_IN;
+import static com.example.ayashome.Values.TAG;
 
     public class MainActivity extends AppCompatActivity {
 
     FrameLayout listaServicios;
     private Toolbar mainToolbar;
-    private ImageView fotoPerfil;
+    private static ImageView fotoPerfil;
 
     static GoogleSignInClient mGoogleSignInClient;
     FirebaseFirestore db;
@@ -70,7 +70,7 @@ import static com.example.ayashome.Values.*;
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestProfile().requestEmail().build();
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -193,7 +193,42 @@ import static com.example.ayashome.Values.*;
         }
         else
         {
-            fotoPerfil.setImageResource(R.drawable.comida);
+            Uri accUri = account.getPhotoUrl();
+
+            if(accUri != null)
+            {
+                new DownloadImage().execute(accUri.toString());
+            }
+            new DownloadImage().execute("https://drive.google.com/file/d/10tPin1FdlmueuaIRaoJpaD_xfCTDf8dO/view");
+        }
+    }
+    private static class DownloadImage extends AsyncTask<String, Void, Bitmap>
+    {
+        @Override
+        protected Bitmap doInBackground(String... URL)
+        {
+            String imageURL = URL[0];
+
+            Bitmap bitmap = null;
+            try
+            {
+                // Download Image from URL
+                InputStream input = new java.net.URL(imageURL).openStream();
+                // Decode Bitmap
+                bitmap = BitmapFactory.decodeStream(input);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result)
+        {
+            // Set the bitmap into ImageView
+            fotoPerfil.setImageBitmap(result);
         }
     }
 }
