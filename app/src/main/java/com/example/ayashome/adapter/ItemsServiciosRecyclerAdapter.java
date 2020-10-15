@@ -27,7 +27,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     @NonNull
     @Override
     public ItemsServiciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemsServiciosViewHolder(LayoutInflater.from(context).inflate(R.layout.item_servicios, parent, false));
+        return new ItemsServiciosViewHolder(LayoutInflater.from(context).inflate(R.layout.category_row_items, parent, false));
     }
 
     @Override

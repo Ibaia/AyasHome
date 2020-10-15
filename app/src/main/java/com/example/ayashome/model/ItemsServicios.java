@@ -4,10 +4,12 @@ public class ItemsServicios {
 
     int id;
     int imageUrl;
+    String nombre;
 
-    public ItemsServicios(int id, Integer imageUrl) {
+    public ItemsServicios(int id, Integer imageUrl, String nombre) {
         this.id = id;
         this.imageUrl = imageUrl;
+        this.nombre = nombre;
     }
 
     public int getId() {
@@ -24,5 +26,13 @@ public class ItemsServicios {
 
     public void setImageUrl(Integer imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
