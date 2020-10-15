@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "728816265379",
+    "firebase_url": "https://ayashome-60737.firebaseio.com",
+    "project_id": "ayashome-60737",
+    "storage_bucket": "ayashome-60737.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728816265379:android:b9a7ef078ef3ac0b427716",
+        "android_client_info": {
+          "package_name": "com.example.ayashome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728816265379-lmpeb6852bd9c2mrucakr7jmsj55khmn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ayashome",
+            "certificate_hash": "bd7b90c59538a2ac63f6a00fedb4ca7e28a8056c"
+          }
+        },
+        {
+          "client_id": "728816265379-q9q8ra0jin79nca64tfms0ss87gdirvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAapQhKXexetJDHagehMlUpZytu4dcEcPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728816265379-q9q8ra0jin79nca64tfms0ss87gdirvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
