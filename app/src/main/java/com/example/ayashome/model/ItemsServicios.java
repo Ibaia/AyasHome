@@ -1,6 +1,6 @@
 package com.example.ayashome.model;
 
-public class ItemsServicios {
+public class ItemsServicios{
 
     int id;
     int imageUrl;

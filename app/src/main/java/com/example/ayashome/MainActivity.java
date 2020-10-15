@@ -34,7 +34,8 @@ import java.util.List;
 import static com.example.ayashome.Values.RC_SIGN_IN;
 import static com.example.ayashome.Values.TAG;
 
-    public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     FrameLayout listaServicios;
     private Toolbar mainToolbar;
@@ -202,6 +203,7 @@ import static com.example.ayashome.Values.TAG;
             //new DownloadImage().execute("");
         }
     }
+
     private static class DownloadImage extends AsyncTask<String, Void, Bitmap>
     {
         @Override
