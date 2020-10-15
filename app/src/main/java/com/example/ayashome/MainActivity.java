@@ -199,7 +199,7 @@ import static com.example.ayashome.Values.TAG;
             {
                 new DownloadImage().execute(accUri.toString());
             }
-            new DownloadImage().execute("https://drive.google.com/file/d/10tPin1FdlmueuaIRaoJpaD_xfCTDf8dO/view");
+            //new DownloadImage().execute("");
         }
     }
     private static class DownloadImage extends AsyncTask<String, Void, Bitmap>
