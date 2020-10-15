@@ -1,14 +1,18 @@
 package com.example.ayashome.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ayashome.Datos;
+import com.example.ayashome.MainActivity;
 import com.example.ayashome.R;
 import com.example.ayashome.model.ItemsServicios;
 
@@ -34,6 +38,9 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, int position) {
 
         holder.itemImage.setImageResource(itemsServiciosList.get(position).getImageUrl());
+        holder.nombreItem.setText(itemsServiciosList.get(position).getNombre());
+
+
     }
 
     @Override
@@ -42,11 +49,15 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     public class ItemsServiciosViewHolder extends RecyclerView.ViewHolder{
 
         ImageView itemImage;
+        TextView nombreItem;
 
         public ItemsServiciosViewHolder(@NonNull View itemView) {
             super(itemView);
 
             itemImage = itemView.findViewById(R.id.item_image);
+            nombreItem = itemView.findViewById(R.id.nombre_item);
+
+
         }
     }
 }

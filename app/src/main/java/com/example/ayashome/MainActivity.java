@@ -39,6 +39,7 @@ import static com.example.ayashome.Values.*;
     FrameLayout listaServicios;
     private Toolbar mainToolbar;
     private ImageView fotoPerfil;
+    private ImageView imageItem;
 
     static GoogleSignInClient mGoogleSignInClient;
     FirebaseFirestore db;
@@ -52,6 +53,19 @@ import static com.example.ayashome.Values.*;
         setContentView(R.layout.activity_main);
 
         db = FirebaseFirestore.getInstance();
+
+
+
+
+
+       /* imageItem = findViewById(R.id.item_image);
+        imageItem.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });*/
+
+
 
         fotoPerfil = findViewById(R.id.imgPerfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +141,12 @@ import static com.example.ayashome.Values.*;
 
     }
 
+
+
+    public void click (View view) {
+        Intent intent = new Intent(MainActivity.this, Datos.class);
+        startActivity(intent);
+        }
     private void setMaincategoryRecycler(List<Servicios>todosServicios){
 
         rvVertical = findViewById(R.id.rvVertical);
