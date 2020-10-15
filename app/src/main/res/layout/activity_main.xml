@@ -29,7 +29,7 @@
             android:translationX="342dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="23dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/user"/>
 
         <TextView
             android:layout_width="wrap_content"
