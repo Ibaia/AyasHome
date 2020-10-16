@@ -10,7 +10,7 @@
         android:id="@+id/toolbarMain"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#DCACAC"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,19 +26,31 @@
             android:clickable="true"
             android:contentDescription="@string/imgDescription"
             android:focusable="true"
+            android:src="@drawable/user"
             android:translationX="342dp"
             tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="23dp"
-            android:src="@drawable/user"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/titulo"
-            android:layout_gravity="start"
-            android:id="@+id/tvTitulo" />
+            tools:layout_editor_absoluteY="23dp" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="194dp"
+        android:layout_height="39dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="@+id/toolbarMain"
+        app:srcCompat="@drawable/logo_nombre" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="104dp"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/logo_icono" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVertical"

@@ -34,7 +34,7 @@ public class Datos extends AppCompatActivity {
         final Button reserva = findViewById(R.id.reserva);
         final Toolbar toolbarMain = findViewById(R.id.toolbarMain2);
         final ImageView imgPerfil = findViewById(R.id.imgPerfil);
-        final TextView tvTitulo = findViewById(R.id.tvTitulo);
+
 
 
     }
