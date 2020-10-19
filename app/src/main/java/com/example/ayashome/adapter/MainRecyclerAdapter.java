@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ayashome.R;
-import com.example.ayashome.model.ItemsServicios;
+import com.example.ayashome.model.Items;
 import com.example.ayashome.model.Servicios;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
 
         holder.nombreServicio.setText(todosServicios.get(position).getNombreServicio());
-        setArrayListServicios(holder.itemRecycler, todosServicios.get(position).getItemsServiciosArrayList());
+        setArrayListServicios(holder.itemRecycler, todosServicios.get(position).getItemsArrayList());
     }
 
     @Override
@@ -62,9 +62,9 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
         }
     }
 
-    private void setArrayListServicios (RecyclerView recyclerView, List<ItemsServicios> itemsServiciosArrayList) {
+    private void setArrayListServicios (RecyclerView recyclerView, List<Items> itemsArrayList) {
 
-        ItemsServiciosRecyclerAdapter itemsServiciosRecyclerAdapter = new ItemsServiciosRecyclerAdapter(context, itemsServiciosArrayList);
+        ItemsServiciosRecyclerAdapter itemsServiciosRecyclerAdapter = new ItemsServiciosRecyclerAdapter(context, itemsArrayList);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(itemsServiciosRecyclerAdapter);
     }

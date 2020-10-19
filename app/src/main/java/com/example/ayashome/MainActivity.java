@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.example.ayashome.adapter.MainRecyclerAdapter;
-import com.example.ayashome.model.ItemsServicios;
+import com.example.ayashome.model.Items;
 import com.example.ayashome.model.Servicios;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
@@ -83,45 +83,43 @@ import static com.example.ayashome.Values.*;
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // estupidos datos de prueba
-
-        List<ItemsServicios> peluqueriaServicios = new ArrayList<>();
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Corte"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Mechas"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Marcados"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Trenzados"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Planchas"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Color"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Coloración"));
-        peluqueriaServicios.add(new ItemsServicios(1, R.drawable.pelu, "Decoloraciones"));
 
 
-        List<ItemsServicios> esteticaServicios = new ArrayList<>();
-        esteticaServicios.add(new ItemsServicios(1, R.drawable.este, "Facial"));
-        esteticaServicios.add(new ItemsServicios(1, R.drawable.este, "Manicura"));
-        esteticaServicios.add(new ItemsServicios(1, R.drawable.este, "Depilación"));
+        // Test data to check the app
+        List<Items> peluqueriaServicios = new ArrayList<>();
+        peluqueriaServicios.add(new Items(1, "Peluquería", "Corte", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "Mechas", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "Marcados", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "trenzados", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "planchas", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "Color", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "Coloración ", "",50, R.drawable.pelu));
+        peluqueriaServicios.add(new Items(1, "Peluquería", "Decoloraciones", "",50, R.drawable.pelu));
 
-        List<ItemsServicios> yogaServicios = new ArrayList<>();
-        yogaServicios.add(new ItemsServicios(1, R.drawable.yoga, "Yoga"));
+        List<Items> esteticaServicios = new ArrayList<>();
+        esteticaServicios.add(new Items(1, "Estética", "Corte", "",50, R.drawable.este));
+        esteticaServicios.add(new Items(1, "Estética", "Corte", "",50, R.drawable.este));
+        esteticaServicios.add(new Items(1, "Estética", "Corte", "",50, R.drawable.este));
 
-        List<ItemsServicios> masajeServicios = new ArrayList<>();
-        masajeServicios.add(new ItemsServicios(1, R.drawable.masaje, "Masajes"));
+        List<Items> yogaServicios = new ArrayList<>();
+        yogaServicios.add(new Items(1, "Masaje", "Masaje", "",50, R.drawable.yoga));
 
-        List<ItemsServicios> alojamientoServicios = new ArrayList<>();
-        alojamientoServicios.add(new ItemsServicios(1, R.drawable.doscamas, "Dos Camas"));
-        alojamientoServicios.add(new ItemsServicios(1, R.drawable.unacama, "Una Cama"));
+        List<Items> masajeServicios = new ArrayList<>();
+        masajeServicios.add(new Items(1, "Yoga", "Yoga", "",50, R.drawable.masaje));
 
-        List<ItemsServicios> comidaServicios = new ArrayList<>();
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 1"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 2"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 3"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 4"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 5"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 6"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 7"));
-        comidaServicios.add(new ItemsServicios(1, R.drawable.comida, "Menu 8"));
+        List<Items> alojamientoServicios = new ArrayList<>();
+        alojamientoServicios.add(new Items(1, "Alojamiento", "Cama Grande", "",50, R.drawable.unacama));
+        alojamientoServicios.add(new Items(1, "Alojamiento", "Doble Cama", "",50, R.drawable.doscamas));
 
-
+        List<Items> comidaServicios = new ArrayList<>();
+        comidaServicios.add(new Items(1, "Comida", "Menu 1", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 2", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 3", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 4", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 5", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 6", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 7", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 8", "",50, R.drawable.comida));
 
         List<Servicios> todosServicios = new ArrayList<>();
         todosServicios.add(new Servicios("Peluquería", peluqueriaServicios));
@@ -141,9 +139,10 @@ import static com.example.ayashome.Values.*;
         Intent intent = new Intent(MainActivity.this, Datos.class);
         startActivity(intent);
         }
-    private void setMaincategoryRecycler(List<Servicios>todosServicios){
 
-        rvVertical = findViewById(R.id.rvVertical);
+    // Set up the vertical RecyclerView with its adapter
+    private void setMaincategoryRecycler(List<Servicios>todosServicios){
+                rvVertical = findViewById(R.id.rvVertical);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvVertical.setLayoutManager(layoutManager);
         mainRecyclerAdapter = new MainRecyclerAdapter(this, todosServicios);
@@ -185,6 +184,8 @@ import static com.example.ayashome.Values.*;
         }
     }
 
+
+    // Method to go to the Reservas Activity
     private void goReservas()
     {
         Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);

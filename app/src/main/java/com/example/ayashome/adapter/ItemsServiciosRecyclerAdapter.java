@@ -1,7 +1,6 @@
 package com.example.ayashome.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ayashome.Datos;
-import com.example.ayashome.MainActivity;
 import com.example.ayashome.R;
-import com.example.ayashome.model.ItemsServicios;
+import com.example.ayashome.model.Items;
 
 import java.util.List;
 
 public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsServiciosRecyclerAdapter.ItemsServiciosViewHolder> {
 
     private Context context;
-    private List<ItemsServicios> itemsServiciosList;
+    private List<Items> itemsList;
 
-    public ItemsServiciosRecyclerAdapter(Context context, List<ItemsServicios> itemsServiciosList) {
+    public ItemsServiciosRecyclerAdapter(Context context, List<Items> itemsList) {
         this.context = context;
-        this.itemsServiciosList = itemsServiciosList;
+        this.itemsList = itemsList;
     }
 
     @NonNull
@@ -37,14 +34,14 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     @Override
     public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, int position) {
 
-        holder.itemImage.setImageResource(itemsServiciosList.get(position).getImageUrl());
-        holder.nombreItem.setText(itemsServiciosList.get(position).getNombre());
+        holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
+        holder.nombreItem.setText(itemsList.get(position).getNombre());
 
 
     }
 
     @Override
-    public int getItemCount() { return itemsServiciosList.size();  }
+    public int getItemCount() { return itemsList.size();  }
 
     public class ItemsServiciosViewHolder extends RecyclerView.ViewHolder{
 

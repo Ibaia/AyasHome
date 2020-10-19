@@ -5,19 +5,19 @@ import java.util.List;
 public class Servicios {
 
     String nombreServicio;
-    List<ItemsServicios> itemsServiciosArrayList;
+    List<Items> itemsArrayList;
 
-    public Servicios(String nombreServicio, List<ItemsServicios> itemsServiciosArrayList) {
+    public Servicios(String nombreServicio, List<Items> itemsArrayList) {
         this.nombreServicio = nombreServicio;
-        this.itemsServiciosArrayList = itemsServiciosArrayList;
+        this.itemsArrayList = itemsArrayList;
     }
 
-    public List<ItemsServicios> getItemsServiciosArrayList() {
-        return itemsServiciosArrayList;
+    public List<Items> getItemsArrayList() {
+        return itemsArrayList;
     }
 
-    public void setItemsServiciosArrayList(List<ItemsServicios> itemsServiciosArrayList) {
-        this.itemsServiciosArrayList = itemsServiciosArrayList;
+    public void setItemsArrayList(List<Items> itemsArrayList) {
+        this.itemsArrayList = itemsArrayList;
     }
 
     public String getNombreServicio() {
