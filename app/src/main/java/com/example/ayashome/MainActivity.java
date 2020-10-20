@@ -48,19 +48,6 @@ import static com.example.ayashome.Values.*;
 
         db = FirebaseFirestore.getInstance();
 
-
-
-
-
-       /* imageItem = findViewById(R.id.item_image);
-        imageItem.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });*/
-
-
-
         fotoPerfil = findViewById(R.id.imgPerfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
