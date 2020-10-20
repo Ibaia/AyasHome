@@ -28,16 +28,14 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     @NonNull
     @Override
     public ItemsServiciosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemsServiciosViewHolder(LayoutInflater.from(context).inflate(R.layout.category_row_items, parent, false));
+        return new ItemsServiciosViewHolder(LayoutInflater.from(context).inflate(R.layout.items, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, int position) {
-
+        // pick the image and name of to each item and show it
         holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
         holder.nombreItem.setText(itemsList.get(position).getNombre());
-
-
     }
 
     @Override
@@ -50,7 +48,6 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
 
         public ItemsServiciosViewHolder(@NonNull View itemView) {
             super(itemView);
-
             itemImage = itemView.findViewById(R.id.item_image);
             nombreItem = itemView.findViewById(R.id.nombre_item);
 

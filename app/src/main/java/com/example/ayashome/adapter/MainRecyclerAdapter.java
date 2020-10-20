@@ -20,37 +20,37 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
 
 
    private Context context;
-   private List<Servicios> todosServicios;
+   private List<Servicios> serviciosList;
 
 
     public MainRecyclerAdapter(Context context, List<Servicios> arrayListServicios) {
         this.context = context;
-        this.todosServicios = arrayListServicios;
+        this.serviciosList = arrayListServicios;
     }
 
     @NonNull
     @Override
     public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MainViewHolder(LayoutInflater.from(context).inflate(R.layout.main_recycler_row_item, parent, false));
+        return new MainViewHolder(LayoutInflater.from(context).inflate(R.layout.servicios, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
 
-        holder.nombreServicio.setText(todosServicios.get(position).getNombreServicio());
-        setArrayListServicios(holder.itemRecycler, todosServicios.get(position).getItemsArrayList());
+        holder.nombreServicio.setText(serviciosList.get(position).getNombreServicio());
+        setArrayListServicios(holder.rvServicios, serviciosList.get(position).getItemsArrayList());
     }
 
     @Override
     public int getItemCount() {
 
-        return todosServicios.size();
+        return serviciosList.size();
     }
 
     public class MainViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombreServicio;
-        RecyclerView itemRecycler;
+        RecyclerView rvServicios;
 
 
 
@@ -58,7 +58,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
             super(itemView);
 
             nombreServicio = itemView.findViewById(R.id.nombre_servicio);
-            itemRecycler = itemView.findViewById(R.id.item_recycler);
+            rvServicios = itemView.findViewById(R.id.rvServicios);
         }
     }
 

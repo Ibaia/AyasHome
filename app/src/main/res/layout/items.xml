@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cvItems"
         android:layout_width="180dp"
         android:layout_height="100dp"
         app:cardCornerRadius="15dp"

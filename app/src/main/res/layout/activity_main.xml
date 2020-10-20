@@ -35,26 +35,30 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgHeader"
         android:layout_width="194dp"
         android:layout_height="39dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/imgHome"
         app:layout_constraintTop_toTopOf="@+id/toolbarMain"
+        app:layout_constraintVertical_bias="0.411"
         app:srcCompat="@drawable/logo_nombre" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/imgHome"
         android:layout_width="104dp"
         android:layout_height="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:layout_marginEnd="307dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/rvMain"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/logo_icono" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvVertical"
+        android:id="@+id/rvMain"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

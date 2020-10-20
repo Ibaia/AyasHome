@@ -38,7 +38,7 @@ import static com.example.ayashome.Values.*;
     static GoogleSignInClient mGoogleSignInClient;
     FirebaseFirestore db;
 
-    RecyclerView rvVertical;
+    RecyclerView rvMain;
     MainRecyclerAdapter mainRecyclerAdapter;
 
     @Override
@@ -142,11 +142,11 @@ import static com.example.ayashome.Values.*;
 
     // Set up the vertical RecyclerView with its adapter
     private void setMaincategoryRecycler(List<Servicios>todosServicios){
-                rvVertical = findViewById(R.id.rvVertical);
+        rvMain = findViewById(R.id.rvMain);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvVertical.setLayoutManager(layoutManager);
+        rvMain.setLayoutManager(layoutManager);
         mainRecyclerAdapter = new MainRecyclerAdapter(this, todosServicios);
-        rvVertical.setAdapter(mainRecyclerAdapter);
+        rvMain.setAdapter(mainRecyclerAdapter);
 
     }
 

@@ -117,7 +117,7 @@
         app:srcCompat="@drawable/logo_icono" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imgHeader"
         android:layout_width="194dp"
         android:layout_height="39dp"
         android:layout_marginStart="24dp"
