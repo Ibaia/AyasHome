@@ -120,13 +120,6 @@ import static com.example.ayashome.Values.*;
 
     }
 
-
-
-    public void click (View view) {
-        Intent intent = new Intent(MainActivity.this, Datos.class);
-        startActivity(intent);
-        }
-
     // Set up the vertical RecyclerView with its adapter
     private void setMaincategoryRecycler(List<Servicios>todosServicios){
                 rvVertical = findViewById(R.id.rvVertical);
