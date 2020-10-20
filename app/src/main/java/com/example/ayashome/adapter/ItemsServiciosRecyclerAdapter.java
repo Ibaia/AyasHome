@@ -34,7 +34,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, final int position)
     {
         holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
         holder.itemImage.setOnClickListener(new View.OnClickListener()
@@ -43,6 +43,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
             public void onClick(View v)
             {
                 Intent intent = new Intent(context, Datos.class);
+                intent.putExtra("ID", itemsList.get(position).getId());
                 context.startActivity(intent);
             }
         });
