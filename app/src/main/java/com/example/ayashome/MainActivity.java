@@ -48,19 +48,6 @@ import static com.example.ayashome.Values.*;
 
         db = FirebaseFirestore.getInstance();
 
-
-
-
-
-       /* imageItem = findViewById(R.id.item_image);
-        imageItem.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-            }
-        });*/
-
-
-
         fotoPerfil = findViewById(R.id.imgPerfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -132,13 +119,6 @@ import static com.example.ayashome.Values.*;
         setMaincategoryRecycler(todosServicios);
 
     }
-
-
-
-    public void click (View view) {
-        Intent intent = new Intent(MainActivity.this, Datos.class);
-        startActivity(intent);
-        }
 
     // Set up the vertical RecyclerView with its adapter
     private void setMaincategoryRecycler(List<Servicios>todosServicios){
