@@ -8,7 +8,7 @@
 
     <android.widget.Toolbar
         android:id="@+id/toolbarMain2"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#DCACAC"
         android:minHeight="?attr/actionBarSize"
@@ -36,9 +36,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:layout_marginEnd="117dp"
+        android:adjustViewBounds="false"
         android:src="@drawable/pelu_grande"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -76,20 +76,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/precio"
-        android:layout_width="230dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="44dp"
-        android:text="Dia                Hora"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
-
     <Button
         android:id="@+id/reserva"
         android:layout_width="wrap_content"
@@ -104,7 +90,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.349" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -125,5 +111,47 @@
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/toolbarMain2"
         app:srcCompat="@drawable/logo_nombre" />
+
+    <EditText
+        android:id="@+id/etFecha"
+        android:layout_width="136dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/fechaPlaceHolder"
+        android:inputType="textPersonName"
+        android:onClick="listenerBotones"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+
+    <EditText
+        android:id="@+id/etHora"
+        android:layout_width="57dp"
+        android:layout_height="37dp"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/horaPlaceHolder"
+        android:inputType="textPersonName"
+        android:onClick="listenerBotones"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFecha"
+        app:layout_constraintVertical_bias="0.025" />
+
+    <TextView
+        android:id="@+id/tvPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/reserva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etFecha" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

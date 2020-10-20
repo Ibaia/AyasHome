@@ -9,6 +9,8 @@
     <string name="logOut">Cerrar Sesión</string>
     <string name="cortes">Cortes</string>
     <string name="cortesdescrip">Asesoramiento, diseño y corte de pelo para mujer y hombre, atendiendo a tu estructura facial y a las tendencias más actuales.</string>
+    <string name="fechaPlaceHolder">DD/MM/YYYY</string>
+    <string name="horaPlaceHolder">--:--</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
