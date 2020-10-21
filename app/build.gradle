@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.ayashome"
+        applicationId "com.dosdmtres.ayashome"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -43,5 +43,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.gms:google-services:4.3.4'
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
 
 }

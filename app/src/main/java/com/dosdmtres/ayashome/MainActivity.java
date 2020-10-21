@@ -1,4 +1,4 @@
-package com.example.ayashome;
+package com.dosdmtres.ayashome;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,9 +12,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
-import com.example.ayashome.adapter.MainRecyclerAdapter;
-import com.example.ayashome.model.Items;
-import com.example.ayashome.model.Servicios;
+import com.dosdmtres.ayashome.adapter.MainRecyclerAdapter;
+import com.dosdmtres.ayashome.model.Items;
+import com.dosdmtres.ayashome.model.Servicios;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ayashome.Values.*;
+import static com.dosdmtres.ayashome.Values.*;
 
     public class MainActivity extends AppCompatActivity {
 

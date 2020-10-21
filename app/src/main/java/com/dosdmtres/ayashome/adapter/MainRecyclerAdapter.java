@@ -1,4 +1,4 @@
-package com.example.ayashome.adapter;
+package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ayashome.R;
-import com.example.ayashome.model.Items;
-import com.example.ayashome.model.Servicios;
+import com.dosdmtres.ayashome.R;
+import com.dosdmtres.ayashome.model.Items;
+import com.dosdmtres.ayashome.model.Servicios;
 
 import java.util.List;
 

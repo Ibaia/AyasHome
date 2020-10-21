@@ -1,4 +1,4 @@
-package com.example.ayashome.adapter;
+package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ayashome.Datos;
-import com.example.ayashome.R;
-import com.example.ayashome.model.Items;
+import com.dosdmtres.ayashome.Datos;
+import com.dosdmtres.ayashome.R;
+import com.dosdmtres.ayashome.model.Items;
 
 import java.util.List;
 

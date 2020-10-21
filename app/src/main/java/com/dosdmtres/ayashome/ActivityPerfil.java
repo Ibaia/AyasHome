@@ -1,4 +1,4 @@
-package com.example.ayashome;
+package com.dosdmtres.ayashome;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import static com.example.ayashome.MainActivity.mGoogleSignInClient;
+import static com.dosdmtres.ayashome.MainActivity.mGoogleSignInClient;
 
 public class ActivityPerfil extends AppCompatActivity {
 
