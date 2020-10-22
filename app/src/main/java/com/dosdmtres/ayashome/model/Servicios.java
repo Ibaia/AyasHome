@@ -12,6 +12,11 @@ public class Servicios {
         this.itemsArrayList = itemsArrayList;
     }
 
+    public Servicios(String nombreServicio) {
+        this.nombreServicio = nombreServicio;
+            }
+
+
     public List<Items> getItemsArrayList() {
         return itemsArrayList;
     }

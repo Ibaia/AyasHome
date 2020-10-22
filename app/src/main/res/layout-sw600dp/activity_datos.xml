@@ -28,7 +28,7 @@
             android:contentDescription="@string/imgDescription"
             android:focusable="true"
             android:src="@drawable/user"
-            android:translationX="342dp"
+            android:translationX="1200dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="23dp" />
 
@@ -36,8 +36,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/pelu_grande"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,32 +56,31 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/descripcion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/descripcion"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/cortesdescrip"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
 
     <TextView
         android:id="@+id/precio"
         android:layout_width="230dp"
         android:layout_height="32dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="450dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="44dp"
         android:text="Dia                Hora"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +92,8 @@
         android:id="@+id/reserva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="43dp"
+        android:layout_marginEnd="250dp"
         android:layout_marginBottom="48dp"
         android:text="Reservar"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -119,8 +117,8 @@
         android:id="@+id/imgHeader"
         android:layout_width="194dp"
         android:layout_height="39dp"
-        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarMain2"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMain2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/toolbarMain2"
         app:srcCompat="@drawable/logo_nombre" />
