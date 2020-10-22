@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.dosdmtres.ayashome.Values.*;
+import com.dosdmtres.ayashome.Portada;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Test data to check the app
-        List<Items> peluqueriaServicios = new ArrayList<>();
+/*        List<Items> peluqueriaServicios = new ArrayList<>();
         peluqueriaServicios.add(new Items(1, "Peluquería", "Corte", "",50, R.drawable.pelu));
         peluqueriaServicios.add(new Items(1, "Peluquería", "Mechas", "",50, R.drawable.pelu));
         peluqueriaServicios.add(new Items(1, "Peluquería", "Marcados", "",50, R.drawable.pelu));
@@ -110,15 +111,15 @@ public class MainActivity extends AppCompatActivity {
         comidaServicios.add(new Items(1, "Comida", "Menu 5", "",50, R.drawable.comida));
         comidaServicios.add(new Items(1, "Comida", "Menu 6", "",50, R.drawable.comida));
         comidaServicios.add(new Items(1, "Comida", "Menu 7", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 8", "",50, R.drawable.comida));
+        comidaServicios.add(new Items(1, "Comida", "Menu 8", "",50, R.drawable.comida));*/
 
         List<Servicios> todosServicios = new ArrayList<>();
-        todosServicios.add(new Servicios("Peluquería", peluqueriaServicios));
-        todosServicios.add(new Servicios("Estética", esteticaServicios));
-        todosServicios.add(new Servicios("Yoga", yogaServicios));
-        todosServicios.add(new Servicios("Masaje", masajeServicios));
-        todosServicios.add(new Servicios("Alojamiento", alojamientoServicios));
-        todosServicios.add(new Servicios("Comida", comidaServicios));
+        todosServicios.add(new Servicios("Peluquería", Portada.peluqueriaServicios));
+        todosServicios.add(new Servicios("Estética", Portada.esteticaServicios));
+        todosServicios.add(new Servicios("Yoga", Portada.yogaServicios));
+        todosServicios.add(new Servicios("Masaje", Portada.masajeServicios));
+        todosServicios.add(new Servicios("Alojamiento", Portada.alojamientoServicios));
+        todosServicios.add(new Servicios("Comida", Portada.comidaServicios));
 
         setMaincategoryRecycler(todosServicios);
 
