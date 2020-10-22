@@ -23,7 +23,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -52,31 +55,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = FirebaseFirestore.getInstance();
-        db.collection("Servicios").get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String nombreServicio = document.getData().get("nombre").toString();
-                                Log.d(TAG, nombreServicio);
-                                db.collection("Servicio").document(nombreServicio).collection(nombreServicio).get();
-                                for (QueryDocumentSnapshot document2 : task.getResult()) {
-                                    String nombreItem = document2.getData().get("nombre").toString();
-                                    Log.d(TAG, nombreItem);
-                                }
-                                servicios.add(new Servicios(nombreServicio));
-                            }
-                        }
-                    }
-                });
 
 
-
-
-
-        //setMaincategoryRecycler(todosServicios);
 
 
         fotoPerfil = findViewById(R.id.imgPerfil);
