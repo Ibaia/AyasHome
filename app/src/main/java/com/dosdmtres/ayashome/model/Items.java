@@ -1,4 +1,4 @@
-package com.example.ayashome.model;
+package com.dosdmtres.ayashome.model;
 
 public class Items {
 

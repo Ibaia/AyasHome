@@ -1,4 +1,4 @@
-package com.example.ayashome;
+package com.dosdmtres.ayashome;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +13,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
-import com.example.ayashome.adapter.MainRecyclerAdapter;
-import com.example.ayashome.model.Items;
-import com.example.ayashome.model.Servicios;
+import com.dosdmtres.ayashome.adapter.MainRecyclerAdapter;
+import com.dosdmtres.ayashome.model.Items;
+import com.dosdmtres.ayashome.model.Servicios;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +23,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,7 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.ayashome.Values.*;
+import static com.dosdmtres.ayashome.Values.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mainToolbar;
     private ImageView fotoPerfil;
     private ImageView imageItem;
-    static int admin;
 
     static GoogleSignInClient mGoogleSignInClient;
     FirebaseFirestore db;
@@ -75,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+
 
         // Test data to check the app
         List<Items> peluqueriaServicios = new ArrayList<>();
@@ -171,35 +171,7 @@ public class MainActivity extends AppCompatActivity {
     // Method to go to the Reservas Activity
     private void goReservas()
     {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        final String gmail = account.getEmail();
-        final Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);
-
-        db.collection("Usuarios")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String email = document.getString("correo");
-                                if(gmail.equalsIgnoreCase(email))
-                                {
-                                    Log.w("EMAIL", email);
-                                    admin = 1;
-                                    break;
-                                }
-                                else
-                                {
-                                    Log.w("SAP", "SAP");
-                                }
-                            }
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-
+        Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);
         startActivity(intentPerfil);
     }
 

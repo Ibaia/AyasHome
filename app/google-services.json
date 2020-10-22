@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:728816265379:android:b9a7ef078ef3ac0b427716",
+        "mobilesdk_app_id": "1:728816265379:android:94a567ec6b1b18d9427716",
         "android_client_info": {
-          "package_name": "com.example.ayashome"
+          "package_name": "com.dosdmtres.ayashome"
         }
       },
       "oauth_client": [
         {
-          "client_id": "728816265379-lmpeb6852bd9c2mrucakr7jmsj55khmn.apps.googleusercontent.com",
+          "client_id": "728816265379-ngri8akesff4s7jlarsmkgi9qofsolvi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ayashome",
-            "certificate_hash": "bd7b90c59538a2ac63f6a00fedb4ca7e28a8056c"
+            "package_name": "com.dosdmtres.ayashome",
+            "certificate_hash": "8d24983cc093ebe10b11750e7eeb671542529e82"
           }
         },
         {

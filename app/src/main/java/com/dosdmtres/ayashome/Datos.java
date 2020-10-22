@@ -1,4 +1,4 @@
-package com.example.ayashome;
+package com.dosdmtres.ayashome;
 
 import androidx.appcompat.app.AppCompatActivity;
 

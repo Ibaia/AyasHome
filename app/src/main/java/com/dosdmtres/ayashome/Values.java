@@ -1,4 +1,4 @@
-package com.example.ayashome;
+package com.dosdmtres.ayashome;
 
 public class Values {
     static final int RC_SIGN_IN = 3;

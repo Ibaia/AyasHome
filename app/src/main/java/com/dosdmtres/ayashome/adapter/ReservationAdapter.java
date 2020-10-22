@@ -1,4 +1,4 @@
-package com.example.ayashome.adapter;
+package com.dosdmtres.ayashome.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ayashome.R;
-import com.example.ayashome.model.Reservation;
-import com.example.ayashome.model.Reservations;
+import com.dosdmtres.ayashome.R;
+import com.dosdmtres.ayashome.model.Reservation;
+import com.dosdmtres.ayashome.model.Reservations;
 
 public class ReservationAdapter extends BaseAdapter {
 

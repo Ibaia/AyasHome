@@ -1,4 +1,6 @@
-package com.example.ayashome.model;
+package com.dosdmtres.ayashome.model;
+
+import com.dosdmtres.ayashome.model.Reservation;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
-package com.example.ayashome.adapter;
+package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ayashome.R;
-import com.example.ayashome.model.Items;
+import com.dosdmtres.ayashome.Datos;
+import com.dosdmtres.ayashome.R;
+import com.dosdmtres.ayashome.model.Items;
 
 import java.util.List;
 
@@ -32,11 +34,20 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, final int position)
+    {
         holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
+        holder.itemImage.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(context, Datos.class);
+                intent.putExtra("ID", itemsList.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
         holder.nombreItem.setText(itemsList.get(position).getNombre());
-
 
     }
 
