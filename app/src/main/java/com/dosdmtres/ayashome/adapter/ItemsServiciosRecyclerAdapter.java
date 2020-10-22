@@ -43,7 +43,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
             public void onClick(View v)
             {
                 Intent intent = new Intent(context, Datos.class);
-                intent.putExtra("NOMBRE", itemsList.get(position).getNombre());
+                intent.putExtra("ID", itemsList.get(position).getId());
                 context.startActivity(intent);
             }
         });

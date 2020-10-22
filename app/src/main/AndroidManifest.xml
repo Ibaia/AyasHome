@@ -11,9 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.dosdmtres.ayashome.Datos"></activity>
-        <activity android:name="com.dosdmtres.ayashome.ActivityPerfil" />
-        <activity android:name="com.dosdmtres.ayashome.MainActivity">
+        <activity android:name=".Portada">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Datos" />
+        <activity android:name=".ActivityPerfil" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

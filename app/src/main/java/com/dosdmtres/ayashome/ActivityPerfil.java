@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.dosdmtres.ayashome.adapter.ReservationAdapter;
+import com.dosdmtres.ayashome.model.Reservation;
+import com.dosdmtres.ayashome.model.Reservations;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +31,12 @@ public class ActivityPerfil extends AppCompatActivity {
 
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
+
+        Reservations r1 = new Reservations();
+
+        ReservationAdapter rAdapter1 = new ReservationAdapter(ActivityPerfil.this, r1);
+
+        list.setAdapter(rAdapter1);
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
 

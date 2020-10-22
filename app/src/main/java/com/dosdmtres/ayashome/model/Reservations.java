@@ -2,6 +2,7 @@ package com.dosdmtres.ayashome.model;
 
 import com.dosdmtres.ayashome.model.Reservation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Reservations {
@@ -13,8 +14,11 @@ public class Reservations {
 
     public Reservations()
     {
-        Reservation r1 = new Reservation("Pelu", "10/10/01", "15/15/15", "asd@gmail.com");
-        Reservation r2 = new Reservation("Masaje","123/123/233","123/124/4", "njsdnjsd@gmail.com");
+        Reservation r1 = new Reservation("Alojamiento", "12/12/1234", "12/12/1234", "asd@gmail.com");
+        Reservation r2 = new Reservation("Masaje","12/12/1234","12/12/1234", "njsdnjsd@gmail.com");
+
+        listReservations = new ArrayList<>();
+
         listReservations.add(r1);
         listReservations.add(r2);
     }

@@ -45,11 +45,23 @@ public class ReservationAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         oneReservationLine = inflater.inflate(R.layout.one_reservation_line, parent, false);
 
-        TextView correo = oneReservationLine.findViewById(R.id.correo);
-        TextView tipoServicio = oneReservationLine.findViewById(R.id.tipoServicio);
-        TextView fechaEntrada = oneReservationLine.findViewById(R.id.fechaEntrada);
-        TextView fechaSalida = oneReservationLine.findViewById(R.id.fechaSalida);
+        final TextView correo = oneReservationLine.findViewById(R.id.correo);
+        final TextView tipoServicio = oneReservationLine.findViewById(R.id.tipoServicio);
+        final TextView fechaEntrada = oneReservationLine.findViewById(R.id.fechaEntrada);
+        final TextView fechaSalida = oneReservationLine.findViewById(R.id.fechaSalida);
         ImageView btn_delete = oneReservationLine.findViewById(R.id.btn_delete);
+
+        btn_delete.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                correo.setText("-");
+                tipoServicio.setText("-");
+                fechaEntrada.setText("-");
+                fechaSalida.setText("-");
+            }
+        });
 
         Reservation r = this.getItem(position);
 

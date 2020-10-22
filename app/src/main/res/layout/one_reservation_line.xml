@@ -6,70 +6,66 @@
     android:layout_height="match_parent"
     android:background="#DFDFDF">
 
-    <ImageView
-        android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#EA1E1E"
+        android:orientation="horizontal"
+        app:layout_constrainedWidth="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fechaSalida"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_min="wrap">
 
-    <TextView
-        android:id="@+id/tipoServicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/correo"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/correo"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:textIsSelectable="true"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/correo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/fechaEntrada"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tipoServicio"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tipoServicio"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:maxWidth="5dp"
+            android:minWidth="5dp"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/fechaEntrada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/fechaSalida"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/correo"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/fechaEntrada"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:maxWidth="5dp"
+            android:minWidth="5dp"
+            android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/fechaSalida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_delete"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fechaEntrada"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/fechaSalida"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:maxWidth="5dp"
+            android:minWidth="5dp"
+            android:textSize="12sp" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="6dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_delete" />
+        <ImageView
+            android:id="@+id/btn_delete"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#EA1E1E"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
