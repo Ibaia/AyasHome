@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:728816265379:android:7756492c98997e75427716",
+        "android_client_info": {
+          "package_name": "com.dosdmtres.ayashome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728816265379-ngri8akesff4s7jlarsmkgi9qofsolvi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dosdmtres.ayashome",
+            "certificate_hash": "8d24983cc093ebe10b11750e7eeb671542529e82"
+          }
+        },
+        {
+          "client_id": "728816265379-q9q8ra0jin79nca64tfms0ss87gdirvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAapQhKXexetJDHagehMlUpZytu4dcEcPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728816265379-q9q8ra0jin79nca64tfms0ss87gdirvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:728816265379:android:b9a7ef078ef3ac0b427716",
         "android_client_info": {
           "package_name": "com.example.ayashome"
@@ -15,11 +52,27 @@
       },
       "oauth_client": [
         {
-          "client_id": "728816265379-lmpeb6852bd9c2mrucakr7jmsj55khmn.apps.googleusercontent.com",
+          "client_id": "728816265379-2dengn7bn9lec3nut8uqon6cr41c3skk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ayashome",
+            "certificate_hash": "caa2b13e343912610f6fdca33caaee6c666d57f7"
+          }
+        },
+        {
+          "client_id": "728816265379-jnsi16glkgjef2d5q3dr8mfhcr509hak.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.ayashome",
             "certificate_hash": "bd7b90c59538a2ac63f6a00fedb4ca7e28a8056c"
+          }
+        },
+        {
+          "client_id": "728816265379-77c37ipr19serk9c1hl4guf8a82j7826.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ayashome",
+            "certificate_hash": "8d24983cc093ebe10b11750e7eeb671542529e82"
           }
         },
         {
