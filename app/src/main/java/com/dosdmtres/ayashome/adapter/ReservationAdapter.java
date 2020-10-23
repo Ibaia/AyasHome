@@ -1,5 +1,6 @@
 package com.dosdmtres.ayashome.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,15 +9,23 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.dosdmtres.ayashome.ActivityPerfil;
+import com.dosdmtres.ayashome.MainActivity;
 import com.dosdmtres.ayashome.R;
 import com.dosdmtres.ayashome.model.Reservation;
 import com.dosdmtres.ayashome.model.Reservations;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class ReservationAdapter extends BaseAdapter {
 
     Activity mActivity;
     Reservations list;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public ReservationAdapter(Activity mActivity, Reservations list) {
         this.mActivity = mActivity;
@@ -38,8 +47,9 @@ public class ReservationAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View oneReservationLine;
 
         LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -51,19 +61,25 @@ public class ReservationAdapter extends BaseAdapter {
         final TextView fechaSalida = oneReservationLine.findViewById(R.id.fechaSalida);
         ImageView btn_delete = oneReservationLine.findViewById(R.id.btn_delete);
 
+        final Reservation r = this.getItem(position);
+
         btn_delete.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                correo.setText("-");
-                tipoServicio.setText("-");
-                fechaEntrada.setText("-");
-                fechaSalida.setText("-");
+                db.collection("Reservas").document(r.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>()
+                {
+                    @Override
+                    public void onSuccess(Void aVoid)
+                    {
+                        list.delReser(position);
+
+                        mActivity.recreate();
+                    }
+                });
             }
         });
-
-        Reservation r = this.getItem(position);
 
         correo.setText(r.getCliente());
         tipoServicio.setText(r.getServicio());

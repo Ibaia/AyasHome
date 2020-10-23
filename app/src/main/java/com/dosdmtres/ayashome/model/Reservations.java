@@ -1,8 +1,5 @@
 package com.dosdmtres.ayashome.model;
 
-import com.dosdmtres.ayashome.model.Reservation;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Reservations {
@@ -18,5 +15,10 @@ public class Reservations {
 
     public void setListReservations(List<Reservation> listReservations) {
         this.listReservations = listReservations;
+    }
+
+    public void delReser(int position)
+    {
+        listReservations.remove(position);
     }
 }

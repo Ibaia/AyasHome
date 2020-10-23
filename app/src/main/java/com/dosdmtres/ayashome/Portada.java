@@ -17,12 +17,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Portada extends AppCompatActivity
 {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    static ArrayList<Servicios> servicios = new ArrayList<>();;
+    static ArrayList<Servicios> servicios = new ArrayList<>();
     ArrayList<String> nombreServicios = new ArrayList<>();
 
     @Override
@@ -46,7 +47,7 @@ public class Portada extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    for(QueryDocumentSnapshot document : task.getResult())
+                    for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                     {
                         nombreServicios.add(document.getString("nombre"));
                     }
@@ -70,7 +71,7 @@ public class Portada extends AppCompatActivity
 
                     if(task.isSuccessful())
                     {
-                        for(QueryDocumentSnapshot document : task.getResult())
+                        for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
                             String nombre = document.getString("nombre");
                             String descripcion = document.getString("descripcion");

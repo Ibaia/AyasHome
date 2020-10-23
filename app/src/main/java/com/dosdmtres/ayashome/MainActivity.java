@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.dosdmtres.ayashome.Values.*;
 
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView fotoPerfil;
     private ImageView imageItem;
 
+    @SuppressLint("StaticFieldLeak")
     static GoogleSignInClient mGoogleSignInClient;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     static ArrayList<Reservation> allReser;
@@ -121,7 +124,10 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             updateUI(account);
-            goReservas(account);
+            if (account != null)
+            {
+                goReservas(account);
+            }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -143,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
             {
                 if(task.isSuccessful())
                 {
-                    for (QueryDocumentSnapshot document : task.getResult())
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                     {
-                        adminList.add(document.getString("correo").toLowerCase());
+                        adminList.add(Objects.requireNonNull(document.getString("correo")).toLowerCase());
                     }
                     if(adminList.contains(email))
                     {
@@ -169,14 +175,15 @@ public class MainActivity extends AppCompatActivity {
                     {
                         if(task.isSuccessful())
                         {
-                            for (QueryDocumentSnapshot document : task.getResult())
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                             {
-                                String cliente = document.getString("");
+                                String id = document.getId();
+                                String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
                                 String fechaSalida = document.getString("fechaSalida");
                                 String servicio = document.getString("servicio");
 
-                                allReser.add(new Reservation(cliente, fechaEntrada, fechaSalida, servicio));
+                                allReser.add(new Reservation("", fechaEntrada, fechaSalida, servicio, id));
                             }
                             goPerfil();
                         }
@@ -197,14 +204,15 @@ public class MainActivity extends AppCompatActivity {
                     {
                         if(task.isSuccessful())
                         {
-                            for (QueryDocumentSnapshot document : task.getResult())
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                             {
                                 String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
                                 String fechaSalida = document.getString("fechaSalida");
                                 String servicio = document.getString("servicio");
+                                String id = document.getId();
 
-                                allReser.add(new Reservation(cliente, fechaEntrada, fechaSalida, servicio));
+                                allReser.add(new Reservation(cliente, fechaEntrada, fechaSalida, servicio, id));
                             }
                             goPerfil();
                         }
