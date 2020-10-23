@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
 import com.dosdmtres.ayashome.model.Items;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,11 +31,14 @@ public class Portada extends AppCompatActivity
 
     static int size = 0;
 
+    private ImageView imgPortada;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portada);
+        imgPortada = findViewById(R.id.imgPortada);
     }
 
     @Override

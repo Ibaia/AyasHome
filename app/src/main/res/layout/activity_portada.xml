@@ -60,7 +60,7 @@
         app:srcCompat="@drawable/logo_icono" />
 
     <ImageView
-        android:id="@+id/fotoPortada"
+        android:id="@+id/imgPortada"
         android:layout_width="611dp"
         android:layout_height="695dp"
         android:clickable="false"
@@ -72,17 +72,4 @@
         app:layout_constraintVertical_bias="0.0"
         tools:srcCompat="@drawable/recepcion" />
 
-    <Button
-        android:id="@+id/botonEntrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#97F44336"
-        android:text="@string/entrar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain3"
-        app:layout_constraintVertical_bias="0.787" />
 </androidx.constraintlayout.widget.ConstraintLayout>
