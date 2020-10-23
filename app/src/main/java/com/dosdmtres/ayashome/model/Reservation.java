@@ -6,7 +6,7 @@ public class Reservation {
     String fechaSalida;
     String cliente;
 
-    public Reservation(String servicio, String fechaEntrada, String fechaSalida, String cliente)
+    public Reservation(String cliente, String fechaEntrada, String fechaSalida, String servicio)
     {
         this.servicio = servicio;
         this.fechaEntrada = fechaEntrada;

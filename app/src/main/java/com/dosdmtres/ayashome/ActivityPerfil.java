@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import static com.dosdmtres.ayashome.MainActivity.allReser;
 import static com.dosdmtres.ayashome.MainActivity.mGoogleSignInClient;
 
 public class ActivityPerfil extends AppCompatActivity {
@@ -32,9 +33,9 @@ public class ActivityPerfil extends AppCompatActivity {
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
 
-        Reservations r1 = new Reservations();
+        Reservations rs1 = new Reservations(allReser);
 
-        ReservationAdapter rAdapter1 = new ReservationAdapter(ActivityPerfil.this, r1);
+        ReservationAdapter rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
 
         list.setAdapter(rAdapter1);
 
