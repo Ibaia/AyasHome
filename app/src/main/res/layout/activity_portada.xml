@@ -61,8 +61,8 @@
 
     <ImageView
         android:id="@+id/imgPortada"
-        android:layout_width="611dp"
-        android:layout_height="695dp"
+        android:layout_width="603dp"
+        android:layout_height="696dp"
         android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
