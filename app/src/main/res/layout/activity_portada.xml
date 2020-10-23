@@ -6,4 +6,83 @@
     android:layout_height="match_parent"
     tools:context=".Portada">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMain3"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="#DCACAC"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imgPerfil"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:contentDescription="@string/imgDescription"
+            android:focusable="true"
+            android:src="@drawable/user"
+            android:translationX="342dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="23dp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imgHeader2"
+        android:layout_width="194dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="76dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMain3"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toEndOf="@+id/imgHome2"
+        app:layout_constraintTop_toTopOf="@+id/toolbarMain3"
+        app:layout_constraintVertical_bias="0.411"
+        app:srcCompat="@drawable/logo_nombre" />
+
+    <ImageView
+        android:id="@+id/imgHome2"
+        android:layout_width="104dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="307dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/rvMain"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_icono" />
+
+    <ImageView
+        android:id="@+id/fotoPortada"
+        android:layout_width="611dp"
+        android:layout_height="695dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.817"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@drawable/recepcion" />
+
+    <Button
+        android:id="@+id/botonEntrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#97F44336"
+        android:text="@string/entrar"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain3"
+        app:layout_constraintVertical_bias="0.787" />
 </androidx.constraintlayout.widget.ConstraintLayout>

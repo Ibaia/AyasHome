@@ -45,7 +45,7 @@ public class Portada extends AppCompatActivity
         Bundle b=new Bundle();
 
         servicios = new ArrayList<>();
-
+        db = FirebaseFirestore.getInstance();
         db.collection("Servicios").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
         {
             @Override
