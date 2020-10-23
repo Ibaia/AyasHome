@@ -75,54 +75,14 @@ public class MainActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
-
-        // Test data to check the app
-/*        List<Items> peluqueriaServicios = new ArrayList<>();
-        peluqueriaServicios.add(new Items(1, "Peluquería", "Corte", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "Mechas", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "Marcados", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "trenzados", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "planchas", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "Color", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "Coloración ", "",50, R.drawable.pelu));
-        peluqueriaServicios.add(new Items(1, "Peluquería", "Decoloraciones", "",50, R.drawable.pelu));
-
-        List<Items> esteticaServicios = new ArrayList<>();
-        esteticaServicios.add(new Items(1, "Estética", "Corte", "",50, R.drawable.este));
-        esteticaServicios.add(new Items(1, "Estética", "Corte", "",50, R.drawable.este));
-        esteticaServicios.add(new Items(1, "Estética", "Corte", "",50, R.drawable.este));
-
-        List<Items> yogaServicios = new ArrayList<>();
-        yogaServicios.add(new Items(1, "Masaje", "Masaje", "",50, R.drawable.yoga));
-
-        List<Items> masajeServicios = new ArrayList<>();
-        masajeServicios.add(new Items(1, "Yoga", "Yoga", "",50, R.drawable.masaje));
-
-        List<Items> alojamientoServicios = new ArrayList<>();
-        alojamientoServicios.add(new Items(1, "Alojamiento", "Cama Grande", "",50, R.drawable.unacama));
-        alojamientoServicios.add(new Items(1, "Alojamiento", "Doble Cama", "",50, R.drawable.doscamas));
-
-        List<Items> comidaServicios = new ArrayList<>();
-        comidaServicios.add(new Items(1, "Comida", "Menu 1", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 2", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 3", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 4", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 5", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 6", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 7", "",50, R.drawable.comida));
-        comidaServicios.add(new Items(1, "Comida", "Menu 8", "",50, R.drawable.comida));*/
-
         List<Servicios> todosServicios = new ArrayList<>();
-        todosServicios.add(new Servicios("Peluquería", Portada.peluqueriaServicios));
-        todosServicios.add(new Servicios("Estética", Portada.esteticaServicios));
-        todosServicios.add(new Servicios("Yoga", Portada.yogaServicios));
-        todosServicios.add(new Servicios("Masaje", Portada.masajeServicios));
-        todosServicios.add(new Servicios("Alojamiento", Portada.alojamientoServicios));
-        todosServicios.add(new Servicios("Comida", Portada.comidaServicios));
+
+        for(int i = 0; i < Portada.servicios.size(); i++)
+        {
+            todosServicios.add(new Servicios(Portada.servicios.get(i).getNombreServicio(), Portada.servicios.get(i).getItemsArrayList()));
+        }
 
         setMaincategoryRecycler(todosServicios);
-
     }
 
     // Set up the vertical RecyclerView with its adapter

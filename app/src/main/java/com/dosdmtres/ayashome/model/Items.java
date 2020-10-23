@@ -2,15 +2,14 @@ package com.dosdmtres.ayashome.model;
 
 public class Items {
 
-
     String nombre;
     String descripcion;
-    double precio;
-    int imageMini;
-    int imageLarge;
+    String precio;
+    String imageMini;
+    String imageLarge;
 
 
-    public Items(String nombre, String descripcion, double precio, int imageMini, int imageLarge) {
+    public Items(String nombre, String descripcion, String precio, String imageMini, String imageLarge) {
 
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -20,7 +19,7 @@ public class Items {
     }
 
     // Custom Constructor with only one image per item
-    public Items(int id, String categoria, String nombre, String descripcion, double precio, int imageMini) {
+    public Items(int id, String categoria, String nombre, String descripcion, String precio, String imageMini) {
 
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -47,27 +46,27 @@ public class Items {
         this.descripcion = descripcion;
     }
 
-    public double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 
-    public int getImageMini() {
+    public String getImageMini() {
         return imageMini;
     }
 
-    public void setImageMini(int imageMini) {
+    public void setImageMini(String imageMini) {
         this.imageMini = imageMini;
     }
 
-    public int getImageLarge() {
+    public String getImageLarge() {
         return imageLarge;
     }
 
-    public void setImageLarge(int imageLarge) {
+    public void setImageLarge(String imageLarge) {
         this.imageLarge = imageLarge;
     }
 }

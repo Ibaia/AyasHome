@@ -36,7 +36,8 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     @Override
     public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, final int position)
     {
-        holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
+        //holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
+        holder.itemImage.setImageResource(R.drawable.comida);
         holder.itemImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
