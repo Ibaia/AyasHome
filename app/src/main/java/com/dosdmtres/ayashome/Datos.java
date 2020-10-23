@@ -19,6 +19,7 @@ import android.widget.Toolbar;
 
 import com.google.type.DayOfWeek;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 
@@ -37,7 +38,6 @@ public class Datos extends AppCompatActivity {
     private EditText fecha;
     private EditText hora;
     private int numHora, minuto,  dia, mes, ano;
-    private boolean formularioCorrecto = true;
     private boolean formFecha = false;
     private boolean formHora = false;
     private boolean formularioCompleto = false;
@@ -57,6 +57,8 @@ public class Datos extends AppCompatActivity {
         imgPerfil = findViewById(R.id.imgPerfil);
         fecha = findViewById(R.id.etFecha);
         hora = findViewById(R.id.etHora);
+
+        comprobar();
 
     }
 
@@ -90,36 +92,24 @@ public class Datos extends AppCompatActivity {
                 }
                 fecha.setText(a, TextView.BufferType.EDITABLE);
 
-                //If the selected day is monday, show a warning
-                Calendar max = Calendar.getInstance();
-                max.add(Calendar.YEAR, 1);
+                calendario.set(year, month, dayOfMonth);
 
-                //takes every day, one by one with a for
-                for (Calendar contador = Calendar.getInstance(); contador.before(max); contador.add(Calendar.DATE, 1)) {
-                    //takes the day of the for
-                    int fechaSeleccionada = contador.get(Calendar.DAY_OF_WEEK);
+                int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
+                boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
+                if (esLunes) {
+                    CharSequence text = "Por favor, seleccione un día que no sea lunes.";
+                    Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 
-                    //for each day it takes, checks if the selected day is monday, if it is, sends a toast and block the "reservar" button
-                    if (fechaSeleccionada == Calendar.MONDAY) {
-                        /*Calendar[] disabledDays =  new Calendar[1];
-                        disabledDays[0] = contador;*/
-                        Log.d(TAG, "esto es" + fechaSeleccionada);
-
-                        if(dayOfMonth == fechaSeleccionada) {
-                            CharSequence text = "Por favor, seleccione un día que no sea lunes.";
-                            Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-
-                            toast.show();
-
-                            formularioCorrecto = false;
-                        }else {
-                            formFecha = true;
-                        }
-                    }
+                    toast.show();
+                    formFecha = false;
                 }
-
+                else {
+                    formFecha = true;
+                }
+                comprobar();
             }
         }, ano, mes, dia);
+
         //Setting min date to the current date
         dp.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
@@ -129,9 +119,6 @@ public class Datos extends AppCompatActivity {
 
         dp.setTitle("Seleccionar fecha");
         dp.show();
-
-        comprobar();
-
     }
 
     public void mostrarHora() {
@@ -153,16 +140,19 @@ public class Datos extends AppCompatActivity {
         tp.show();
 
         formHora = true;
-        comprobar();
     }
 
     //check if the form is completed and correct
     public void comprobar() {
         if(formFecha && formHora) {
             formularioCompleto = true;
+        } else {
+            formularioCompleto = false;
         }
-        if(!formularioCorrecto && !formularioCompleto) {
+        if(!formularioCompleto) {
             reserva.setEnabled(false);
+        } else {
+            reserva.setEnabled(true);
         }
     }
 
