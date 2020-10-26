@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
 
     <TextView
-        android:id="@+id/precio"
+        android:id="@+id/tvPrecio"
         android:layout_width="230dp"
         android:layout_height="32dp"
         android:layout_marginStart="450dp"

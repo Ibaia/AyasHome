@@ -1,8 +1,10 @@
 package com.dosdmtres.ayashome.model;
 
+import java.util.Comparator;
 import java.util.List;
 
-public class Servicios {
+public class Servicios implements Comparable<Servicios>
+{
 
     String nombreServicio;
     List<Items> itemsArrayList;
@@ -31,5 +33,11 @@ public class Servicios {
 
     public void setNombreServicio(String nombreServicio) {
         this.nombreServicio = nombreServicio;
+    }
+
+    @Override
+    public int compareTo(Servicios o)
+    {
+        return this.nombreServicio.compareTo(o.nombreServicio);
     }
 }

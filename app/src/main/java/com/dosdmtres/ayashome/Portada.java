@@ -1,12 +1,11 @@
 package com.dosdmtres.ayashome;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.dosdmtres.ayashome.model.Items;
 import com.dosdmtres.ayashome.model.Servicios;
@@ -17,13 +16,15 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Portada extends AppCompatActivity
 {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    static ArrayList<Servicios> servicios = new ArrayList<>();;
-    ArrayList<String> nombreServicios = new ArrayList<>();
+    static ArrayList<Servicios> servicios = new ArrayList<>();
+    public static ArrayList<String> nombreServicios = new ArrayList<>();
+    public static ArrayList<Items> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,7 +47,7 @@ public class Portada extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
-                    for(QueryDocumentSnapshot document : task.getResult())
+                    for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                     {
                         nombreServicios.add(document.getString("nombre"));
                     }
@@ -66,19 +67,17 @@ public class Portada extends AppCompatActivity
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task)
                 {
-                    ArrayList<Items> items = new ArrayList<>();
+                   items = new ArrayList<>();
 
                     if(task.isSuccessful())
                     {
-                        for(QueryDocumentSnapshot document : task.getResult())
+                        for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
                             String nombre = document.getString("nombre");
                             String descripcion = document.getString("descripcion");
                             String precio = document.getString("precio");
                             String imageMini = document.getString("urlImagen");
                             String imageLarge = document.getString("urlMiniatura");
-
-                            Log.w(Values.TAG,  nombreServicios.get(finalI) + " " + nombre);
 
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }

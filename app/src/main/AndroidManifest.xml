@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Datos" />
-        <activity android:name=".ActivityPerfil" />
+        <activity android:name=".ActivityPerfil"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
