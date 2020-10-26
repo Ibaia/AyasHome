@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class Portada extends AppCompatActivity
 {
-    FirebaseFirestore db;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     static ArrayList<Servicios> servicios = new ArrayList<>();;
     ArrayList<String> nombreServicios = new ArrayList<>();
@@ -36,8 +36,6 @@ public class Portada extends AppCompatActivity
     protected void onStart()
     {
         super.onStart();
-
-        db = FirebaseFirestore.getInstance();
 
         final Context next = Portada.this;
 
@@ -87,10 +85,6 @@ public class Portada extends AppCompatActivity
                         servicios.add(new Servicios(nombreServicios.get(finalI), items));
                         Intent otherA = new Intent(next, MainActivity.class);
                         next.startActivity(otherA);
-                    }
-                    else
-                    {
-                        Log.v(Values.TAG, "ERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
                     }
                 }
             });

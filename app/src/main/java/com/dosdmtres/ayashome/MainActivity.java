@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.dosdmtres.ayashome.adapter.MainRecyclerAdapter;
-import com.dosdmtres.ayashome.model.Items;
+import com.dosdmtres.ayashome.model.Reservation;
 import com.dosdmtres.ayashome.model.Servicios;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.dosdmtres.ayashome.Values.*;
-import com.dosdmtres.ayashome.Portada;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageItem;
 
     static GoogleSignInClient mGoogleSignInClient;
-    FirebaseFirestore db;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    static ArrayList<Reservation> allReser;
 
     RecyclerView rvMain;
     MainRecyclerAdapter mainRecyclerAdapter;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    goReservas();
+                    goReservas(account);
                 }
             }
         });
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             updateUI(account);
-            goReservas();
+            goReservas(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -130,10 +130,93 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Method to go to the Reservas Activity
-    private void goReservas()
+    private void goReservas(GoogleSignInAccount account)
     {
-        Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);
-        startActivity(intentPerfil);
+        final String email = account.getEmail();
+
+        final ArrayList<String> adminList = new ArrayList<>();
+
+        db.collection("Usuarios").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task)
+            {
+                if(task.isSuccessful())
+                {
+                    for (QueryDocumentSnapshot document : task.getResult())
+                    {
+                        adminList.add(document.getString("correo").toLowerCase());
+                    }
+                    if(adminList.contains(email))
+                    {
+                        superUser();
+                    }
+                    else
+                    {
+                        normalUser(email);
+                    }
+                }
+            }
+
+            private void normalUser(String email)
+            {
+                allReser = new ArrayList<>();
+
+                db.collection("Reservas").whereEqualTo("cliente", email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task)
+                    {
+                        if(task.isSuccessful())
+                        {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                String cliente = document.getString("");
+                                String fechaEntrada = document.getString("fechaEntrada");
+                                String fechaSalida = document.getString("fechaSalida");
+                                String servicio = document.getString("servicio");
+
+                                allReser.add(new Reservation(cliente, fechaEntrada, fechaSalida, servicio));
+                            }
+                            goPerfil();
+                        }
+                    }
+                });
+            }
+
+            private void superUser()
+            {
+                allReser = new ArrayList<>();
+
+                db = FirebaseFirestore.getInstance();
+
+                db.collection("Reservas").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task)
+                    {
+                        if(task.isSuccessful())
+                        {
+                            for (QueryDocumentSnapshot document : task.getResult())
+                            {
+                                String cliente = document.getString("cliente");
+                                String fechaEntrada = document.getString("fechaEntrada");
+                                String fechaSalida = document.getString("fechaSalida");
+                                String servicio = document.getString("servicio");
+
+                                allReser.add(new Reservation(cliente, fechaEntrada, fechaSalida, servicio));
+                            }
+                            goPerfil();
+                        }
+                    }
+                });
+            }
+            private void goPerfil()
+            {
+                Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);
+                startActivity(intentPerfil);
+            }
+        });
     }
 
     @Override

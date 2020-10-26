@@ -12,17 +12,6 @@ public class Reservations {
         this.listReservations = listReservations;
     }
 
-    public Reservations()
-    {
-        Reservation r1 = new Reservation("Alojamiento", "12/12/1234", "12/12/1234", "asd@gmail.com");
-        Reservation r2 = new Reservation("Masaje","12/12/1234","12/12/1234", "njsdnjsd@gmail.com");
-
-        listReservations = new ArrayList<>();
-
-        listReservations.add(r1);
-        listReservations.add(r2);
-    }
-
     public List<Reservation> getListReservations() {
         return listReservations;
     }
