@@ -1,6 +1,7 @@
 package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dosdmtres.ayashome.Datos;
 import com.dosdmtres.ayashome.R;
 import com.dosdmtres.ayashome.model.Items;
 
@@ -46,9 +48,9 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
             public void onClick(View v)
             {
                 Log.w("NOMBRE", itemsList.get(fPosition).getNombre());
-/*                Intent intent = new Intent(context, Datos.class);
-                intent.putExtra("NOMBRE", itemsList.get(position).getNombre());
-                context.startActivity(intent);*/
+                Intent intent = new Intent(context, Datos.class);
+                intent.putExtra("NOMBRE", itemsList.get(fPosition).getNombre());
+                context.startActivity(intent);
             }
         });
         holder.nombreItem.setText(itemsList.get(position).getNombre());
