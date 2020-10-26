@@ -46,7 +46,7 @@ public class Datos extends AppCompatActivity {
         Log.d("TAG",nombre);
 
 
-        for (int i = 0; i < Portada.items.size(); i++) {
+/*        for (int i = 0; i < Portada.items.size(); i++) {
             Items item = Portada.items.get(i);
             if (item.getNombre().equals(nombre)) {
                 descripcionItem = Portada.items.get(i).getDescripcion();
@@ -59,7 +59,7 @@ public class Datos extends AppCompatActivity {
                 Log.d("TAG", nombre + descripcionItem + precioItem);
                 break; //
             }
-        }
+        }*/
 
         //Picasso.get().load(imageLargeItem).into(imageView);
 
