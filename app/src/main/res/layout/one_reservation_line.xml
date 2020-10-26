@@ -20,17 +20,18 @@
 
         <TextView
             android:id="@+id/correo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="false"
             android:textIsSelectable="true"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tipoServicio"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
@@ -40,7 +41,7 @@
 
         <TextView
             android:id="@+id/fechaEntrada"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
@@ -50,7 +51,7 @@
 
         <TextView
             android:id="@+id/fechaSalida"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
