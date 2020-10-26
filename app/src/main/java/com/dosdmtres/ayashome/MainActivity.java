@@ -1,10 +1,5 @@
 package com.dosdmtres.ayashome;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,28 +9,32 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dosdmtres.ayashome.adapter.MainRecyclerAdapter;
 import com.dosdmtres.ayashome.model.Reservation;
 import com.dosdmtres.ayashome.model.Servicios;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static com.dosdmtres.ayashome.Values.*;
-import static com.dosdmtres.ayashome.adapter.ItemsServiciosRecyclerAdapter.itemsList;
+import static com.dosdmtres.ayashome.Values.RC_SIGN_IN;
+import static com.dosdmtres.ayashome.Values.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,16 +80,16 @@ public class MainActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        List<Servicios> todosServicios = new ArrayList<>();
+/*        List<Servicios> todosServicios = new ArrayList<>();
 
         for(int i = 0; i < Portada.servicios.size(); i++)
         {
             todosServicios.add(new Servicios(Portada.servicios.get(i).getNombreServicio(), Portada.servicios.get(i).getItemsArrayList()));
-        }
+        }*/
 
-        Collections.sort(todosServicios);
-       ;
-        setMaincategoryRecycler(todosServicios);
+        Collections.sort(Portada.servicios);
+
+        setMaincategoryRecycler(Portada.servicios);
     }
 
     // Set up the vertical RecyclerView with its adapter

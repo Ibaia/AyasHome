@@ -1,7 +1,6 @@
 package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dosdmtres.ayashome.Datos;
-import com.dosdmtres.ayashome.Portada;
 import com.dosdmtres.ayashome.R;
 import com.dosdmtres.ayashome.model.Items;
 
@@ -21,8 +18,8 @@ import java.util.List;
 
 public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsServiciosRecyclerAdapter.ItemsServiciosViewHolder> {
 
-    private Context context;
-    public static List<Items> itemsList;
+    private final Context context;
+    public List<Items> itemsList;
 
 
     public ItemsServiciosRecyclerAdapter(Context context, List<Items> itemsList) {
@@ -37,8 +34,9 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, final int position)
+    public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, int position)
     {
+        final int fPosition = position;
 
         //holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
         holder.itemImage.setImageResource(R.drawable.comida);
@@ -47,19 +45,19 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(context, Datos.class);
-                intent.putExtra("NOMBRE", Portada.items.get(position).getNombre());
-                context.startActivity(intent);
+                Log.w("NOMBRE", itemsList.get(fPosition).getNombre());
+/*                Intent intent = new Intent(context, Datos.class);
+                intent.putExtra("NOMBRE", itemsList.get(position).getNombre());
+                context.startActivity(intent);*/
             }
         });
         holder.nombreItem.setText(itemsList.get(position).getNombre());
-
     }
 
     @Override
     public int getItemCount() { return itemsList.size();  }
 
-    public class ItemsServiciosViewHolder extends RecyclerView.ViewHolder{
+    public static class ItemsServiciosViewHolder extends RecyclerView.ViewHolder{
 
         ImageView itemImage;
         TextView nombreItem;
@@ -69,8 +67,6 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
 
             itemImage = itemView.findViewById(R.id.item_image);
             nombreItem = itemView.findViewById(R.id.nombre_item);
-
-
         }
     }
 }

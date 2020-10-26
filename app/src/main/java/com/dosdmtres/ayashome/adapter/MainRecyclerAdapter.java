@@ -19,13 +19,13 @@ import java.util.List;
 public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapter.MainViewHolder> {
 
 
-   private Context context;
-   private List<Servicios> serviciosList;
+   private final Context context;
+   private final List<Servicios> todosServicios;
 
 
-    public MainRecyclerAdapter(Context context, List<Servicios> arrayListServicios) {
+    public MainRecyclerAdapter(Context context, List<Servicios> todosServicios) {
         this.context = context;
-        this.serviciosList = arrayListServicios;
+        this.todosServicios = todosServicios;
     }
 
     @NonNull
@@ -37,17 +37,17 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<MainRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
 
-        holder.nombreServicio.setText(serviciosList.get(position).getNombreServicio());
-        setArrayListServicios(holder.rvServicios, serviciosList.get(position).getItemsArrayList());
+        holder.nombreServicio.setText(todosServicios.get(position).getNombreServicio());
+        setArrayListServicios(holder.rvServicios, todosServicios.get(position).getItemsArrayList());
     }
 
     @Override
     public int getItemCount() {
 
-        return serviciosList.size();
+        return todosServicios.size();
     }
 
-    public class MainViewHolder extends RecyclerView.ViewHolder {
+    public static class MainViewHolder extends RecyclerView.ViewHolder {
 
         TextView nombreServicio;
         RecyclerView rvServicios;

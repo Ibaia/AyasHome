@@ -3,7 +3,6 @@ package com.dosdmtres.ayashome;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,14 +18,12 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static com.dosdmtres.ayashome.adapter.ItemsServiciosRecyclerAdapter.itemsList;
-
 public class Portada extends AppCompatActivity
 {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     static ArrayList<Servicios> servicios = new ArrayList<>();
-    ArrayList<String> nombreServicios = new ArrayList<>();
+    public static ArrayList<String> nombreServicios = new ArrayList<>();
     public static ArrayList<Items> items;
 
     @Override
@@ -82,12 +79,9 @@ public class Portada extends AppCompatActivity
                             String imageMini = document.getString("urlImagen");
                             String imageLarge = document.getString("urlMiniatura");
 
-                            Log.w(Values.TAG,  nombreServicios.get(finalI) + " " + nombre);
-
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }
                         servicios.add(new Servicios(nombreServicios.get(finalI), items));
-                        Log.d("TAG",items.toString());
                         Intent otherA = new Intent(next, MainActivity.class);
                         next.startActivity(otherA);
                     }

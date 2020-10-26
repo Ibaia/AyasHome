@@ -1,7 +1,5 @@
 package com.dosdmtres.ayashome;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -9,11 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-import com.dosdmtres.ayashome.adapter.ItemsServiciosRecyclerAdapter;
-import com.dosdmtres.ayashome.model.Items;
-import com.squareup.picasso.Picasso;
-
-import static com.dosdmtres.ayashome.adapter.ItemsServiciosRecyclerAdapter.itemsList;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class Datos extends AppCompatActivity {
@@ -48,7 +42,6 @@ public class Datos extends AppCompatActivity {
         String nombre;
         nombre = getIntent().getStringExtra("NOMBRE");
         Log.d("TAG",nombre);
-
 
        /* for (int i = 0; i < itemsList.size(); i++) {
             Items item = itemsList.get(i);
