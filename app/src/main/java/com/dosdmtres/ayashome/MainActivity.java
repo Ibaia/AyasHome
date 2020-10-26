@@ -29,6 +29,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         {
             todosServicios.add(new Servicios(Portada.servicios.get(i).getNombreServicio(), Portada.servicios.get(i).getItemsArrayList()));
         }
+
+        Collections.sort(todosServicios);
 
         setMaincategoryRecycler(todosServicios);
     }

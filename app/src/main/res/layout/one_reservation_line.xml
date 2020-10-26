@@ -20,42 +20,44 @@
 
         <TextView
             android:id="@+id/correo"
-            android:layout_width="0dp"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:scrollbarAlwaysDrawVerticalTrack="false"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="false"
             android:textIsSelectable="true"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tipoServicio"
-            android:layout_width="0dp"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:maxWidth="5dp"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/fechaEntrada"
-            android:layout_width="0dp"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:maxWidth="5dp"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/fechaSalida"
-            android:layout_width="0dp"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:maxWidth="5dp"
             android:textSize="12sp" />
 

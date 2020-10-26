@@ -3,6 +3,7 @@ package com.dosdmtres.ayashome.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class ReservationAdapter extends BaseAdapter {
         oneReservationLine = inflater.inflate(R.layout.one_reservation_line, parent, false);
 
         final TextView correo = oneReservationLine.findViewById(R.id.correo);
+        correo.setMovementMethod(new ScrollingMovementMethod());
         final TextView tipoServicio = oneReservationLine.findViewById(R.id.tipoServicio);
         final TextView fechaEntrada = oneReservationLine.findViewById(R.id.fechaEntrada);
         final TextView fechaSalida = oneReservationLine.findViewById(R.id.fechaSalida);
@@ -75,7 +77,9 @@ public class ReservationAdapter extends BaseAdapter {
                     {
                         list.delReser(position);
 
-                        mActivity.recreate();
+                        ActivityPerfil.rAdapter1.notifyDataSetChanged();
+
+                        /*mActivity.recreate();*/
                     }
                 });
             }

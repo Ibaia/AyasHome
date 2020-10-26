@@ -23,6 +23,7 @@ public class ActivityPerfil extends AppCompatActivity {
 
     Button logOut;
     ListView list;
+    public static ReservationAdapter rAdapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class ActivityPerfil extends AppCompatActivity {
 
         Reservations rs1 = new Reservations(allReser);
 
-        ReservationAdapter rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
+        rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
 
         list.setAdapter(rAdapter1);
 
