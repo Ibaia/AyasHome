@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.dosdmtres.ayashome.Values.*;
+import static com.dosdmtres.ayashome.adapter.ItemsServiciosRecyclerAdapter.itemsList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        db = FirebaseFirestore.getInstance();
+
 
         fotoPerfil = findViewById(R.id.imgPerfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Collections.sort(todosServicios);
-
+       ;
         setMaincategoryRecycler(todosServicios);
     }
 

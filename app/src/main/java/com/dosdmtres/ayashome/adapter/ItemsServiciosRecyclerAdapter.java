@@ -2,6 +2,7 @@ package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dosdmtres.ayashome.Datos;
+import com.dosdmtres.ayashome.Portada;
 import com.dosdmtres.ayashome.R;
 import com.dosdmtres.ayashome.model.Items;
 
@@ -20,7 +22,8 @@ import java.util.List;
 public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsServiciosRecyclerAdapter.ItemsServiciosViewHolder> {
 
     private Context context;
-    private List<Items> itemsList;
+    public static List<Items> itemsList;
+
 
     public ItemsServiciosRecyclerAdapter(Context context, List<Items> itemsList) {
         this.context = context;
@@ -36,6 +39,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     @Override
     public void onBindViewHolder(@NonNull ItemsServiciosViewHolder holder, final int position)
     {
+
         //holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
         holder.itemImage.setImageResource(R.drawable.comida);
         holder.itemImage.setOnClickListener(new View.OnClickListener()
@@ -44,7 +48,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
             public void onClick(View v)
             {
                 Intent intent = new Intent(context, Datos.class);
-                intent.putExtra("NOMBRE", itemsList.get(position).getNombre());
+                intent.putExtra("NOMBRE", Portada.items.get(position).getNombre());
                 context.startActivity(intent);
             }
         });
