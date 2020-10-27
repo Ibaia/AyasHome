@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
                 if(account == null)
                 {
-                    signIn(MainActivity.this);
+                    signIn();
                 }
                 else
                 {
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void signIn(Context context)
+    void signIn()
     {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);

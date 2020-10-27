@@ -16,6 +16,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Portada extends AppCompatActivity
@@ -71,10 +72,12 @@ public class Portada extends AppCompatActivity
 
                     if(task.isSuccessful())
                     {
+                        String locale = Locale.getDefault().getLanguage();
+
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
-                            String nombre = document.getString("nombre");
-                            String descripcion = document.getString("descripcion");
+                            String nombre = document.getString("nombre" + (locale.equals("en") ? "En" : ""));
+                            String descripcion = document.getString("descripcion" + (locale.equals("en") ? "En" : ""));
                             String precio = document.getString("precio");
                             String imageMini = document.getString("urlImagen");
                             String imageLarge = document.getString("urlMiniatura");

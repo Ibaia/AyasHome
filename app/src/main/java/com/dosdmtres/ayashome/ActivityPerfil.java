@@ -26,6 +26,7 @@ public class ActivityPerfil extends AppCompatActivity {
     ListView list;
     public static ReservationAdapter rAdapter1;
     TextView thisUser;
+    TextView noR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class ActivityPerfil extends AppCompatActivity {
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
         thisUser = findViewById(R.id.thisUser);
+        noR = findViewById(R.id.noReservations);
 
         String email = (String)getIntent().getSerializableExtra("USER");
 
@@ -42,11 +44,19 @@ public class ActivityPerfil extends AppCompatActivity {
 
         thisUser.setText(user);
 
-        Reservations rs1 = new Reservations(allReser);
+        if(!allReser.isEmpty())
+        {
+            Reservations rs1 = new Reservations(allReser);
 
-        rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
+            rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
 
-        list.setAdapter(rAdapter1);
+            list.setAdapter(rAdapter1);
+        }
+        else
+        {
+            noR.setVisibility(View.VISIBLE);
+        }
+
 
         logOut.setOnClickListener(new View.OnClickListener()
         {

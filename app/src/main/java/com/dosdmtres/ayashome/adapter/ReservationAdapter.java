@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -67,6 +69,8 @@ public class ReservationAdapter extends BaseAdapter {
 
         btn_delete.setOnClickListener(new View.OnClickListener()
         {
+
+            int two = 5;
             @Override
             public void onClick(View v)
             {
@@ -78,8 +82,6 @@ public class ReservationAdapter extends BaseAdapter {
                         list.delReser(position);
 
                         ActivityPerfil.rAdapter1.notifyDataSetChanged();
-
-                        /*mActivity.recreate();*/
                     }
                 });
             }

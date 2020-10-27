@@ -16,4 +16,5 @@
     <string name="button">Cancelar</string>
     <string name="todo">delete</string>
     <string name="user">Usuario</string>
+    <string name="textview">No hay reservas</string>
 </resources>
