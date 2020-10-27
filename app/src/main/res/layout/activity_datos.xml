@@ -98,15 +98,15 @@
         android:layout_marginStart="280dp"
         android:layout_marginEnd="43dp"
         android:layout_marginBottom="48dp"
-        android:text="Reservar"
+        android:text="@string/botonReserva"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+        app:layout_constraintTop_toBottomOf="@+id/etFecha" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgLogo"
         android:layout_width="104dp"
         android:layout_height="55dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
@@ -121,8 +121,65 @@
         android:layout_height="39dp"
         android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarMain2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imgLogo"
         app:layout_constraintTop_toTopOf="@+id/toolbarMain2"
         app:srcCompat="@drawable/logo_nombre" />
+
+
+    <EditText
+        android:id="@+id/etFecha"
+        android:layout_width="136dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/fechaPlaceHolder"
+        android:inputType="textPersonName"
+        android:onClick="listenerBotones"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+
+    <EditText
+        android:id="@+id/etHora"
+        android:layout_width="62dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/horaPlaceHolder"
+        android:inputType="textPersonName"
+        android:onClick="listenerBotones"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/reserva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFecha"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/etFechaSalida"
+        android:layout_width="136dp"
+        android:layout_height="42dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:focusable="false"
+        android:hint="@string/fechaSalida"
+        android:inputType="textPersonName"
+        android:onClick="listenerBotones"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/reserva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
+        app:layout_constraintVertical_bias="0.421" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
