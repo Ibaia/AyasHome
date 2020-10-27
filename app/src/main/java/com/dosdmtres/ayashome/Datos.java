@@ -45,7 +45,6 @@ public class Datos extends AppCompatActivity {
     private boolean formFecha = false;
     private boolean formFechaSalida = false;
     private boolean formHora = false;
-    private boolean formularioCompleto = false;
     private boolean tipoAlojamiento = false;
 
 
@@ -104,7 +103,6 @@ public class Datos extends AppCompatActivity {
                 fecha.setText(a, TextView.BufferType.EDITABLE);
 
                 calendario.set(year, month, dayOfMonth);
-                calFecha = calendario;
 
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
@@ -118,6 +116,10 @@ public class Datos extends AppCompatActivity {
                 else {
                     formFecha = true;
                 }
+                calFecha = calendario;
+
+                comprobarEntreFechas();
+                comprobar();
             }
         }, ano, mes, dia);
 
@@ -131,8 +133,6 @@ public class Datos extends AppCompatActivity {
         dp.setTitle("Seleccionar fecha");
         dp.show();
 
-        comprobar();
-        comprobarEntreFechas();
     }
 
     public void mostrarFechaSalida() {
@@ -153,7 +153,6 @@ public class Datos extends AppCompatActivity {
                 fechaSalida.setText(a, TextView.BufferType.EDITABLE);
 
                 calendario.set(year, month, dayOfMonth);
-                calFechaSalida = calendario;
 
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
@@ -162,11 +161,15 @@ public class Datos extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 
                     toast.show();
-                    formFecha = false;
+                    formFechaSalida = false;
                 }
                 else {
-                    formFecha = true;
+                    formFechaSalida = true;
                 }
+                calFechaSalida = calendario;
+
+                comprobarEntreFechas();
+                comprobar();
             }
         }, ano, mes, dia);
 
@@ -176,8 +179,6 @@ public class Datos extends AppCompatActivity {
         dp.setTitle("Seleccionar fecha salida");
         dp.show();
 
-        comprobar();
-        comprobarEntreFechas();
     }
 
     //Checks if the selected time is valid
@@ -195,58 +196,74 @@ public class Datos extends AppCompatActivity {
                 }
                 hora.setText(a, TextView.BufferType.EDITABLE);
 
+                formHora = true;
+                comprobar();
+
             }
         }, numHora, minuto, false);
         tp.show();
 
-        formHora = true;
-        comprobar();
-        comprobarEntreFechas();
     }
 
-    //Checks if the service is for housing
+    //Checks if the service is for housing or not
     public void comprobarTipoReserva() {
         tipoAlojamiento = true;
         fechaSalida.setVisibility(View.VISIBLE);
+        hora.setVisibility(View.GONE);
     }
 
     //Checks if the two dates from housing are valid
+    //if the final date id smaller than the first, or the same,
     public void comprobarEntreFechas() {
-        if(calFecha != null && calFechaSalida != null) {
-            if(calFechaSalida.before(calFecha) || calFechaSalida == calFecha || fechaSalida.getText().toString().isEmpty()) {
-                fechaSalida.setHintTextColor(0xFFFF0000);
-                fechaSalida.setTextColor(0xFFFF0000);
-            } else {
-                fechaSalida.setTextColor(0xff000000);
-                formFechaSalida = true;
+        if (tipoAlojamiento = true) {
+            if (calFecha != null && calFechaSalida != null) {
+                if ((calFechaSalida.get(Calendar.YEAR) - calFecha.get(Calendar.YEAR) >= 0)) {
+                    if ((calFechaSalida.get(Calendar.MONTH) - calFecha.get(Calendar.MONTH) >= 0)) {
+                        if ((calFechaSalida.get(Calendar.DAY_OF_MONTH) - calFecha.get(Calendar.DAY_OF_MONTH) > 0)) {
+                            formFechaSalida = true;
+                            fechaSalida.setTextColor(0xff000000);
+                            fecha.setTextColor(0xff000000);
+                        } else {
+                            formFechaSalida = false;
+                            fechaSalida.setTextColor(0xFFFF0000);
+                            fecha.setTextColor(0xFFFF0000);
+                        }
+                    } else {
+                        formFechaSalida = false;
+                        fechaSalida.setTextColor(0xFFFF0000);
+                        fecha.setTextColor(0xFFFF0000);
+                    }
+                } else {
+                    formFechaSalida = false;
+                    fechaSalida.setTextColor(0xFFFF0000);
+                    fecha.setTextColor(0xFFFF0000);
+                }
             }
+
         }
     }
 
     //check if the form is correct and completed
     public void comprobar() {
-        if(!tipoAlojamiento) {
-            if(formFecha && formHora) {
+        boolean formularioCompleto = false;
+
+        if (!tipoAlojamiento) {
+            if (formFecha && formHora) {
                 formularioCompleto = true;
             } else {
                 formularioCompleto = false;
-            }
-            if(!formularioCompleto) {
-                reserva.setEnabled(false);
-            } else {
-                reserva.setEnabled(true);
             }
         } else {
-            if(formFecha && formHora && formFechaSalida) {
+            if (formFecha && formFechaSalida) {
                 formularioCompleto = true;
             } else {
                 formularioCompleto = false;
             }
-            if(!formularioCompleto) {
-                reserva.setEnabled(false);
-            } else {
-                reserva.setEnabled(true);
-            }
+        }
+        if (!formularioCompleto) {
+            reserva.setEnabled(false);
+        } else {
+            reserva.setEnabled(true);
         }
     }
 
