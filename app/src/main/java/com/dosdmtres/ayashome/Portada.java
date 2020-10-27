@@ -25,6 +25,7 @@ public class Portada extends AppCompatActivity
 
     static ArrayList<Servicios> servicios = new ArrayList<>();
     public static ArrayList<String> nombreServicios = new ArrayList<>();
+    public static ArrayList<String> nombreServiciosEn = new ArrayList<>();
     public static ArrayList<Items> items;
 
     @Override
@@ -48,9 +49,19 @@ public class Portada extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
+                    String locale = Locale.getDefault().getLanguage();
+
                     for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                     {
                         nombreServicios.add(document.getString("nombre"));
+                    }
+
+                    if(locale.equals("en"))
+                    {
+                        for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
+                        {
+                            nombreServiciosEn.add(document.getString("nombreEn"));
+                        }
                     }
                     secAccess(next);
                 }
@@ -84,7 +95,7 @@ public class Portada extends AppCompatActivity
 
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }
-                        servicios.add(new Servicios(nombreServicios.get(finalI), items));
+                        servicios.add(new Servicios(locale.equals("en") ? nombreServiciosEn.get(finalI) : nombreServicios.get(finalI), items));
                         Intent otherA = new Intent(next, MainActivity.class);
                         next.startActivity(otherA);
                     }
