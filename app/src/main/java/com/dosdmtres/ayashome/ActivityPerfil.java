@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class ActivityPerfil extends AppCompatActivity {
     Button logOut;
     ListView list;
     public static ReservationAdapter rAdapter1;
+    TextView thisUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,13 @@ public class ActivityPerfil extends AppCompatActivity {
 
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
+        thisUser = findViewById(R.id.thisUser);
+
+        String email = (String)getIntent().getSerializableExtra("USER");
+
+        String user = email.split("@")[0];
+
+        thisUser.setText(user);
 
         Reservations rs1 = new Reservations(allReser);
 
