@@ -2,121 +2,121 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:background="#4D235454">
 
-    <android.widget.Toolbar
-        android:id="@+id/toolbarMain2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#DCACAC"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        <android.widget.Toolbar
+            android:id="@+id/toolbarMain2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#DCACAC"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <ImageView
+                android:id="@+id/imgPerfil"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:contentDescription="@string/imgDescription"
+                android:focusable="true"
+                android:src="@drawable/user"
+                android:translationX="342dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="23dp" />
+
+        </android.widget.Toolbar>
 
         <ImageView
-            android:id="@+id/imgPerfil"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:clickable="true"
-            android:contentDescription="@string/imgDescription"
-            android:focusable="true"
-            android:src="@drawable/user"
-            android:translationX="342dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="23dp" />
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="360dp"
+            android:adjustViewBounds="false"
+            android:src="@drawable/pelu_grande"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarMain2"
+            android:contentDescription="@string/imagenServicio" />
 
-    </android.widget.Toolbar>
+        <TextView
+            android:id="@+id/servicio"
+            android:layout_width="138dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="313dp"
+            android:layout_marginBottom="11dp"
+            android:text="@string/cortes"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/descripcion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:adjustViewBounds="false"
-        android:src="@drawable/pelu_grande"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
-
-    <TextView
-        android:id="@+id/servicio"
-        android:layout_width="138dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="313dp"
-        android:layout_marginBottom="11dp"
-        android:text="@string/cortes"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/descripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/descripcion"
-        android:layout_width="334dp"
-        android:layout_height="112dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="45dp"
-        android:text="@string/cortesdescrip"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="334dp"
+            android:layout_height="112dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="28dp"
+            android:text="@string/cortesdescrip"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/etFecha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/reserva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="280dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="48dp"
-        android:text="Reservar"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="44dp"
+        android:text="@string/botonReserva"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="104dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/logo_icono" />
+            android:id="@+id/imageView2"
+            android:layout_width="104dp"
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/logo_icono"
+            android:contentDescription="@string/logo" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="194dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/toolbarMain2"
-        app:srcCompat="@drawable/logo_nombre" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="194dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbarMain2"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/toolbarMain2"
+            app:srcCompat="@drawable/logo_nombre"
+            android:contentDescription="@string/titulo" />
 
     <EditText
         android:id="@+id/etFecha"
         android:layout_width="136dp"
         android:layout_height="42dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints=""
         android:ems="10"
         android:focusable="false"
         android:hint="@string/fechaPlaceHolder"
@@ -124,7 +124,7 @@
         android:onClick="listenerBotones"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 
@@ -132,26 +132,46 @@
         android:id="@+id/etHora"
         android:layout_width="62dp"
         android:layout_height="46dp"
+        android:layout_marginBottom="13dp"
+        android:autofillHints=""
         android:ems="10"
         android:focusable="false"
         android:hint="@string/horaPlaceHolder"
         android:inputType="textPersonName"
         android:onClick="listenerBotones"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/reserva"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.078"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFecha"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvPrecio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/reserva"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="64dp"
+        android:text="100k"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/reserva" />
+
+    <EditText
+        android:id="@+id/etFechaSalida"
+        android:layout_width="136dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="97dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/fechaSalida"
+        android:inputType="textPersonName"
+        android:onClick="listenerBotones"
+        android:visibility="gone"
+        android:focusable="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etFecha" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/etFecha"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

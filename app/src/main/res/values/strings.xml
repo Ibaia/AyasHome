@@ -3,14 +3,17 @@
     <string name="imgDescription">Perfil</string>
     <string name="titulo">"Aya's home"</string>
     <string name="fecha">Fecha:</string>
-    <string name="fechaEntrada">Fecha de entrada:</string>
-    <string name="fechaSalida">Fecha de salida:</string>
+    <string name="fechaEntrada">Fecha de entrada</string>
+    <string name="fechaSalida">Fecha de salida</string>
     <string name="catering">Catering:</string>
     <string name="logOut">Cerrar Sesión</string>
     <string name="cortes">Cortes</string>
     <string name="cortesdescrip">Asesoramiento, diseño y corte de pelo para mujer y hombre, atendiendo a tu estructura facial y a las tendencias más actuales.</string>
-    <string name="fechaPlaceHolder">DD/MM/YYYY</string>
-    <string name="horaPlaceHolder">--:--</string>
+    <string name="fechaPlaceHolder">Fecha</string>
+    <string name="horaPlaceHolder">Hora</string>
+    <string name="imagenServicio">Imagen del servicio</string>
+    <string name="botonReserva">Reservar</string>
+    <string name="logo">Logo</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

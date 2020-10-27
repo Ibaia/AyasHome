@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,10 +38,15 @@ public class Datos extends AppCompatActivity {
     private TextView tvTitulo;
     private EditText fecha;
     private EditText hora;
+    private EditText fechaSalida;
+    public static Calendar calFecha;
+    public static Calendar calFechaSalida;
     private int numHora, minuto,  dia, mes, ano;
     private boolean formFecha = false;
+    private boolean formFechaSalida = false;
     private boolean formHora = false;
     private boolean formularioCompleto = false;
+    private boolean tipoAlojamiento = false;
 
 
     @Override
@@ -57,7 +63,9 @@ public class Datos extends AppCompatActivity {
         imgPerfil = findViewById(R.id.imgPerfil);
         fecha = findViewById(R.id.etFecha);
         hora = findViewById(R.id.etHora);
+        fechaSalida = findViewById(R.id.etFechaSalida);
 
+        comprobarTipoReserva();
         comprobar();
 
     }
@@ -70,6 +78,9 @@ public class Datos extends AppCompatActivity {
                 break;
             case R.id.etHora:
                 mostrarHora();
+                break;
+            case R.id.etFechaSalida:
+                mostrarFechaSalida();
                 break;
         }
     }
@@ -93,6 +104,7 @@ public class Datos extends AppCompatActivity {
                 fecha.setText(a, TextView.BufferType.EDITABLE);
 
                 calendario.set(year, month, dayOfMonth);
+                calFecha = calendario;
 
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
@@ -106,7 +118,6 @@ public class Datos extends AppCompatActivity {
                 else {
                     formFecha = true;
                 }
-                comprobar();
             }
         }, ano, mes, dia);
 
@@ -119,8 +130,57 @@ public class Datos extends AppCompatActivity {
 
         dp.setTitle("Seleccionar fecha");
         dp.show();
+
+        comprobar();
+        comprobarEntreFechas();
     }
 
+    public void mostrarFechaSalida() {
+        final Calendar calendario = Calendar.getInstance();
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        mes = calendario.get(Calendar.MONTH);
+        ano = calendario.get(Calendar.YEAR);
+
+
+        DatePickerDialog dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                //month+1 because it starts being 0
+                String a = dayOfMonth + "/" + (month + 1) + "/" + year;
+                if((month + 1) < 10) {
+                    a = dayOfMonth + "/" + "0" + (month + 1) + "/" + year;
+                }
+                fechaSalida.setText(a, TextView.BufferType.EDITABLE);
+
+                calendario.set(year, month, dayOfMonth);
+                calFechaSalida = calendario;
+
+                int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
+                boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
+                if (esLunes) {
+                    CharSequence text = "Por favor, seleccione un día que no sea lunes.";
+                    Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
+
+                    toast.show();
+                    formFecha = false;
+                }
+                else {
+                    formFecha = true;
+                }
+            }
+        }, ano, mes, dia);
+
+        //Setting min date to the current date
+        dp.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+
+        dp.setTitle("Seleccionar fecha salida");
+        dp.show();
+
+        comprobar();
+        comprobarEntreFechas();
+    }
+
+    //Checks if the selected time is valid
     public void mostrarHora() {
         final Calendar calendarioHora = Calendar.getInstance();
         numHora = calendarioHora.get(Calendar.HOUR_OF_DAY);
@@ -140,19 +200,53 @@ public class Datos extends AppCompatActivity {
         tp.show();
 
         formHora = true;
+        comprobar();
+        comprobarEntreFechas();
     }
 
-    //check if the form is completed and correct
-    public void comprobar() {
-        if(formFecha && formHora) {
-            formularioCompleto = true;
-        } else {
-            formularioCompleto = false;
+    //Checks if the service is for housing
+    public void comprobarTipoReserva() {
+        tipoAlojamiento = true;
+        fechaSalida.setVisibility(View.VISIBLE);
+    }
+
+    //Checks if the two dates from housing are valid
+    public void comprobarEntreFechas() {
+        if(calFecha != null && calFechaSalida != null) {
+            if(calFechaSalida.before(calFecha) || calFechaSalida == calFecha || fechaSalida.getText().toString().isEmpty()) {
+                fechaSalida.setHintTextColor(0xFFFF0000);
+                fechaSalida.setTextColor(0xFFFF0000);
+            } else {
+                fechaSalida.setTextColor(0xff000000);
+                formFechaSalida = true;
+            }
         }
-        if(!formularioCompleto) {
-            reserva.setEnabled(false);
+    }
+
+    //check if the form is correct and completed
+    public void comprobar() {
+        if(!tipoAlojamiento) {
+            if(formFecha && formHora) {
+                formularioCompleto = true;
+            } else {
+                formularioCompleto = false;
+            }
+            if(!formularioCompleto) {
+                reserva.setEnabled(false);
+            } else {
+                reserva.setEnabled(true);
+            }
         } else {
-            reserva.setEnabled(true);
+            if(formFecha && formHora && formFechaSalida) {
+                formularioCompleto = true;
+            } else {
+                formularioCompleto = false;
+            }
+            if(!formularioCompleto) {
+                reserva.setEnabled(false);
+            } else {
+                reserva.setEnabled(true);
+            }
         }
     }
 
