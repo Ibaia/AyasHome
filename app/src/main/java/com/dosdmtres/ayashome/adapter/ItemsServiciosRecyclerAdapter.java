@@ -1,6 +1,7 @@
 package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dosdmtres.ayashome.Datos;
 import com.dosdmtres.ayashome.R;
 import com.dosdmtres.ayashome.model.Items;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,16 +42,29 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
         final int fPosition = position;
 
         //holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
-        holder.itemImage.setImageResource(R.drawable.comida);
+
+        try {
+            Picasso.get().load(itemsList.get(position).getImageMini())
+                    .fit()
+                    .centerCrop()
+                    .into(holder.itemImage);
+        } catch (Exception e) {
+            holder.itemImage.setImageResource(R.drawable.logo_icono);
+        }
         holder.itemImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+
+                Intent intent = new Intent(context, Datos.class);
+                intent.putExtra("NOMBRE", itemsList.get(fPosition).getNombre());
+                intent.putExtra("DESCRIPCION", itemsList.get(fPosition).getDescripcion());
+                intent.putExtra("PRECIO", itemsList.get(fPosition).getPrecio());
+                intent.putExtra("IMAGEN",itemsList.get(fPosition).getImageLarge());
                 Log.w("NOMBRE", itemsList.get(fPosition).getNombre());
-/*                Intent intent = new Intent(context, Datos.class);
-                intent.putExtra("NOMBRE", itemsList.get(position).getNombre());
-                context.startActivity(intent);*/
+                Log.w("IMAGEN", itemsList.get(fPosition).getImageLarge());
+                context.startActivity(intent);
             }
         });
         holder.nombreItem.setText(itemsList.get(position).getNombre());

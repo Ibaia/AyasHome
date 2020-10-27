@@ -76,13 +76,15 @@ public class Portada extends AppCompatActivity
                             String nombre = document.getString("nombre");
                             String descripcion = document.getString("descripcion");
                             String precio = document.getString("precio");
-                            String imageMini = document.getString("urlImagen");
-                            String imageLarge = document.getString("urlMiniatura");
+                            String imageMini = document.getString("urlMiniatura");
+                            String imageLarge = document.getString("urlImagen");
+
 
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }
                         servicios.add(new Servicios(nombreServicios.get(finalI), items));
                         Intent otherA = new Intent(next, MainActivity.class);
+
                         next.startActivity(otherA);
                     }
                 }

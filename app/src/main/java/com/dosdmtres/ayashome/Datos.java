@@ -9,6 +9,11 @@ import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dosdmtres.ayashome.model.Items;
+import com.squareup.picasso.Picasso;
+
+import static com.dosdmtres.ayashome.Portada.items;
+
 
 public class Datos extends AppCompatActivity {
 
@@ -25,40 +30,38 @@ public class Datos extends AppCompatActivity {
     String descripcionItem;
     String precioItem;
     String imageLargeItem;
+    String nombreItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos);
 
-        ImageView imageview = findViewById(R.id.imageView);
-        TextView servicio = findViewById(R.id.servicio);
-        TextView descripcion = findViewById(R.id.descripcion);
-        TextView precio = findViewById(R.id.tvPrecio);
+        ImageView imgItem = findViewById(R.id.imgGrande);
+        TextView tvServicio = findViewById(R.id.servicio);
+        TextView tvDescripcion = findViewById(R.id.descripcion);
+        TextView tvPrecio = findViewById(R.id.tvPrecio);
         Button reserva = findViewById(R.id.reserva);
-        Toolbar toolbarMain = findViewById(R.id.toolbarMain2);
-        ImageView imgPerfil = findViewById(R.id.imgPerfil);
 
-        String nombre;
-        nombre = getIntent().getStringExtra("NOMBRE");
-        Log.d("TAG",nombre);
 
-       /* for (int i = 0; i < itemsList.size(); i++) {
-            Items item = itemsList.get(i);
-            if (item.getNombre().equals(nombre)) {
-                descripcionItem = itemsList.get(i).getDescripcion();
-                precioItem = itemsList.get(i).getPrecio();
-                imageLargeItem = itemsList.get(i).getImageLarge();
-                servicio.setText(nombre);
-                descripcion.setText(descripcionItem);
-                precio.setText(precioItem);
+        nombreItem = getIntent().getStringExtra("NOMBRE");
+        descripcionItem = getIntent().getStringExtra("DESCRIPCION");
+        precioItem = getIntent().getStringExtra("PRECIO");
+        imageLargeItem = getIntent().getStringExtra("IMAGEN");
 
-                Log.d("TAG", nombre + descripcionItem + precioItem);
-                break; //
-            }
-        }*/
+        tvDescripcion.setText(descripcionItem);
+        tvPrecio.setText(precioItem);
+        tvServicio.setText(nombreItem);
 
-        //Picasso.get().load(imageLargeItem).into(imageView);
+        try {
+            Picasso.get().load(imageLargeItem)
+                    .fit()
+                    .centerCrop()
+                    .into(imgItem);
+        } catch (Exception e) {
+            imgItem.setImageResource(R.drawable.logo_icono);
+        }
+
 
     }
 }

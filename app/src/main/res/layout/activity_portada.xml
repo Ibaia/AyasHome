@@ -4,74 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DCABAB"
     tools:context=".Portada">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarMain3"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:background="#DCACAC"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="610dp"
+        android:layout_height="730dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginBottom="220dp"
+        android:contentDescription="@string/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/imgPerfil"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:clickable="true"
-            android:contentDescription="@string/imgDescription"
-            android:focusable="true"
-            android:src="@drawable/user"
-            android:translationX="342dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="23dp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <ImageView
-        android:id="@+id/imgHeader2"
-        android:layout_width="194dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="76dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarMain3"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toEndOf="@+id/imgHome2"
-        app:layout_constraintTop_toTopOf="@+id/toolbarMain3"
-        app:layout_constraintVertical_bias="0.411"
-        app:srcCompat="@drawable/logo_nombre" />
-
-    <ImageView
-        android:id="@+id/imgHome2"
-        android:layout_width="104dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="307dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@id/imgHeader2"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_icono" />
-
-    <ImageView
-        android:id="@+id/imgPortada"
-        android:layout_width="681dp"
-        android:layout_height="749dp"
-        android:clickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.651"
-        app:layout_constraintStart_toStartOf="@id/toolbarMain3"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain3"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/recepcion" />
-
+        app:layout_constraintVertical_bias="0.367"
+        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
