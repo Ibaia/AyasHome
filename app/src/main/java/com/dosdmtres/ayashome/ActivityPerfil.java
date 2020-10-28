@@ -80,8 +80,9 @@ public class ActivityPerfil extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent goBack = new Intent(ActivityPerfil.this, MainActivity.class);
-                        startActivity(goBack);
+                        finish();
+/*                        Intent goBack = new Intent(ActivityPerfil.this, MainActivity.class);
+                        startActivity(goBack);*/
                     }
                 });
     }

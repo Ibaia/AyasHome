@@ -116,11 +116,7 @@ public class Datos extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            /*updateUI(account);*/
-            if (account != null)
-            {
-                MainActivity.goReservas(account, this);
-            }
+            updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
