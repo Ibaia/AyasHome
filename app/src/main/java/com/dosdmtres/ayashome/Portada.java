@@ -56,7 +56,7 @@ public class Portada extends AppCompatActivity
                         nombreServicios.add(document.getString("nombre"));
                     }
 
-                    if(locale.equals("en"))
+                    if(!locale.equals("es"))
                     {
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
@@ -87,15 +87,15 @@ public class Portada extends AppCompatActivity
 
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
-                            String nombre = document.getString("nombre" + (locale.equals("en") ? "En" : ""));
-                            String descripcion = document.getString("descripcion" + (locale.equals("en") ? "En" : ""));
+                            String nombre = document.getString("nombre" + (locale.equals("es") ? "" : "En"));
+                            String descripcion = document.getString("descripcion" + (locale.equals("es") ? "" : "En"));
                             String precio = document.getString("precio");
                             String imageMini = document.getString("urlImagen");
                             String imageLarge = document.getString("urlMiniatura");
 
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }
-                        servicios.add(new Servicios(locale.equals("en") ? nombreServiciosEn.get(finalI) : nombreServicios.get(finalI), items));
+                        servicios.add(new Servicios(!locale.equals("es") ? nombreServiciosEn.get(finalI) : nombreServicios.get(finalI), items));
                         Intent otherA = new Intent(next, MainActivity.class);
                         next.startActivity(otherA);
                     }
