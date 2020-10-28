@@ -9,51 +9,50 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMain"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="#DCACAC"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:buttonGravity="top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/imgPerfil"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:clickable="true"
-            android:contentDescription="@string/imgDescription"
-            android:focusable="true"
-            android:src="@drawable/user"
-            android:translationX="342dp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="23dp" />
-
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imgPerfil"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:clickable="true"
+        android:contentDescription="@string/imgDescription"
+        android:focusable="true"
+        android:src="@drawable/user"
+        app:layout_constraintBottom_toTopOf="@+id/rvMain"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
+        app:layout_constraintStart_toEndOf="@+id/imgHeader"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imgHeader"
         android:layout_width="194dp"
         android:layout_height="39dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
-        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
-        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toEndOf="@+id/imgHome"
-        app:layout_constraintTop_toTopOf="@+id/toolbarMain"
-        app:layout_constraintVertical_bias="0.941"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_nombre" />
 
     <ImageView
         android:id="@+id/imgHome"
-        android:layout_width="104dp"
-        android:layout_height="55dp"
+        android:layout_width="106dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="307dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/rvMain"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
         app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
