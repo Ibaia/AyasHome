@@ -3,6 +3,7 @@ package com.dosdmtres.ayashome;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,13 +51,14 @@ public class Portada extends AppCompatActivity
                 if(task.isSuccessful())
                 {
                     String locale = Locale.getDefault().getLanguage();
+                    Log.d("TAG", locale);
 
                     for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                     {
                         nombreServicios.add(document.getString("nombre"));
                     }
 
-                    if(locale.equals("en"))
+                    if(!locale.equals("es"))
                     {
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
@@ -87,8 +89,8 @@ public class Portada extends AppCompatActivity
 
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
-                            String nombre = document.getString("nombre");
-                            String descripcion = document.getString("descripcion");
+                            String nombre = document.getString("nombre" + (locale.equals("es") ? "" : "En"));
+                            String descripcion = document.getString("descripcion" + (locale.equals("es") ? "" : "En"));
                             String precio = document.getString("precio");
                             String imageMini = document.getString("urlMiniatura");
                             String imageLarge = document.getString("urlImagen");
@@ -96,7 +98,7 @@ public class Portada extends AppCompatActivity
 
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }
-                        servicios.add(new Servicios(nombreServicios.get(finalI), items));
+                        servicios.add(new Servicios(!locale.equals("es") ? nombreServiciosEn.get(finalI) : nombreServicios.get(finalI), items));
                         Intent otherA = new Intent(next, MainActivity.class);
                         next.startActivity(otherA);
                     }
