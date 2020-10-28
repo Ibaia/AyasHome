@@ -23,6 +23,7 @@ import com.dosdmtres.ayashome.model.Items;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -121,16 +122,65 @@ public class Datos extends AppCompatActivity {
         //Reservation Button
         btnreserva.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (fechaSalida == null){
-                    serviceReservation(nombreItem, fecha, hora,emailUser);
-                }else{
-                    serviceReservationHabitacion(nombreItem, fecha, fechaSalida, emailUser);
-                }
+                String  fechasalida= fechaSalida.getText().toString();
+                //Log.d("fechasalida", fechasalida);
 
+                /*if (fechasalida == null){
+
+                }else{
+                    //serviceReservationHabitacion(nombreItem, fecha, fechaSalida, emailUser);
+                }*/
+
+                serviceReservation(nombreItem, fecha, hora, emailUser);
             }
         });
     }
 
+    private void serviceReservation(String nombreItem, EditText fecha, EditText hora, String emailUser) {
+
+        String horaReserva=hora.getText().toString();
+        String fechaReserva=fecha.getText().toString();
+        /*String idReserva=(fechaReserva+""+horaReserva).toLowerCase();
+        Log.d("idBBDD", idReserva);*/
+
+        Map<String, Object> updateMap = new HashMap();
+        updateMap.put("cliente", emailUser);
+        updateMap.put("fechaEntrada", fechaReserva);
+        updateMap.put("hora", horaReserva);
+        updateMap.put("servicio", nombreItem);
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //hacemos la insert
+        db.collection("Reservas")
+                .document()
+                .set(updateMap)
+                //Create a toast that tell the user the status of the reservation when it work proprerly
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "Exito al añadir la reserva";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                })
+                //Create a toast that tell the user the status of the reservation when it work
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "Error al añadir la reserva";
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                    }
+                });
+    }
 
 
     private void serviceReservationHabitacion(String nombreItem, EditText fecha, EditText fechaSalida, String emailUser) {
@@ -140,33 +190,7 @@ public class Datos extends AppCompatActivity {
         Log.d("emailUser", emailUser);
     }
 
-    private void serviceReservation(String nombreItem, EditText fecha, EditText hora, String emailUser) {
-        /*Log.d("nombre", nombreItem);
-        Log.d("fecha", fecha.getText().toString());
-        Log.d("hora", hora.getText().toString());
-        Log.d("emailUser", emailUser);*/
 
-        String horaReserva=hora.getText().toString();
-        String fechaReserva=fecha.getText().toString();
-
-        Map<String, Object> updateMap = new HashMap();
-        updateMap.put("usuario", emailUser);
-        updateMap.put("fecha", fecha);
-        updateMap.put("hora", horaReserva);
-        updateMap.put("servicio", nombreItem);
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //hacemos la insert
-        db.collection("Reservas")
-                .document()
-                .set(updateMap)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                    }
-                });
-    }
 
 
     public void listenerBotones(View v) {
