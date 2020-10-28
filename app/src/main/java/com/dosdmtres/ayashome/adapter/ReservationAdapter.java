@@ -87,7 +87,7 @@ public class ReservationAdapter extends BaseAdapter {
                     toast.show();
                     two--;
                 }
-/*                else
+                else
                 {
                     db.collection("Reservas").document(r.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>()
                     {
@@ -99,7 +99,7 @@ public class ReservationAdapter extends BaseAdapter {
                             ActivityPerfil.rAdapter1.notifyDataSetChanged();
                         }
                     });
-                }*/
+                }
             }
         });
 
