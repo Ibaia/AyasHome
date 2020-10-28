@@ -16,6 +16,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Portada extends AppCompatActivity
@@ -24,6 +25,7 @@ public class Portada extends AppCompatActivity
 
     static ArrayList<Servicios> servicios = new ArrayList<>();
     public static ArrayList<String> nombreServicios = new ArrayList<>();
+    public static ArrayList<String> nombreServiciosEn = new ArrayList<>();
     public static ArrayList<Items> items;
 
     @Override
@@ -47,9 +49,19 @@ public class Portada extends AppCompatActivity
             {
                 if(task.isSuccessful())
                 {
+                    String locale = Locale.getDefault().getLanguage();
+
                     for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                     {
                         nombreServicios.add(document.getString("nombre"));
+                    }
+
+                    if(locale.equals("en"))
+                    {
+                        for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
+                        {
+                            nombreServiciosEn.add(document.getString("nombreEn"));
+                        }
                     }
                     secAccess(next);
                 }
@@ -71,6 +83,8 @@ public class Portada extends AppCompatActivity
 
                     if(task.isSuccessful())
                     {
+                        String locale = Locale.getDefault().getLanguage();
+
                         for(QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                         {
                             String nombre = document.getString("nombre");
@@ -84,7 +98,6 @@ public class Portada extends AppCompatActivity
                         }
                         servicios.add(new Servicios(nombreServicios.get(finalI), items));
                         Intent otherA = new Intent(next, MainActivity.class);
-
                         next.startActivity(otherA);
                     }
                 }

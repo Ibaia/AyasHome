@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +23,8 @@ import com.dosdmtres.ayashome.model.Reservation;
 import com.dosdmtres.ayashome.model.Reservations;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Locale;
 
 public class ReservationAdapter extends BaseAdapter {
 
@@ -67,21 +71,35 @@ public class ReservationAdapter extends BaseAdapter {
 
         btn_delete.setOnClickListener(new View.OnClickListener()
         {
+
+            int two = 1;
             @Override
             public void onClick(View v)
             {
-                db.collection("Reservas").document(r.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>()
+                if(two != 0)
                 {
-                    @Override
-                    public void onSuccess(Void aVoid)
+                    Context context = mActivity.getApplicationContext();
+                    String locale = Locale.getDefault().getLanguage();
+                    CharSequence text = locale.equals("es") ? "Presione otra vez para confirmar" : "Press again to confirm";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    two--;
+                }
+                else
+                {
+                    db.collection("Reservas").document(r.getId()).delete().addOnSuccessListener(new OnSuccessListener<Void>()
                     {
-                        list.delReser(position);
+                        @Override
+                        public void onSuccess(Void aVoid)
+                        {
+                            list.delReser(position);
 
-                        ActivityPerfil.rAdapter1.notifyDataSetChanged();
-
-                        /*mActivity.recreate();*/
-                    }
-                });
+                            ActivityPerfil.rAdapter1.notifyDataSetChanged();
+                        }
+                    });
+                }
             }
         });
 

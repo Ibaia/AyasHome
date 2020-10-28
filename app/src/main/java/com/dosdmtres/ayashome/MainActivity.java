@@ -1,6 +1,7 @@
 package com.dosdmtres.ayashome;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    goReservas(account);
+                    goReservas(account, MainActivity.this);
                 }
             }
         });
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             updateUI(account);
             if (account != null)
             {
-                goReservas(account);
+                goReservas(account, this);
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -140,11 +141,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Method to go to the Reservas Activity
-    private void goReservas(GoogleSignInAccount account)
+    static void goReservas(final GoogleSignInAccount account, final Context context)
     {
         final String email = account.getEmail();
 
         final ArrayList<String> adminList = new ArrayList<>();
+
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("Usuarios").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
         {
@@ -182,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                             {
                                 String id = document.getId();
-                                String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
                                 String fechaSalida = document.getString("fechaSalida");
                                 String servicio = document.getString("servicio");
@@ -198,8 +200,6 @@ public class MainActivity extends AppCompatActivity {
             private void superUser()
             {
                 allReser = new ArrayList<>();
-
-                db = FirebaseFirestore.getInstance();
 
                 db.collection("Reservas").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
@@ -225,8 +225,9 @@ public class MainActivity extends AppCompatActivity {
             }
             private void goPerfil()
             {
-                Intent intentPerfil = new Intent(MainActivity.this, ActivityPerfil.class);
-                startActivity(intentPerfil);
+                Intent intentPerfil = new Intent(context, ActivityPerfil.class);
+                intentPerfil.putExtra("USER", account.getEmail());
+                context.startActivity(intentPerfil);
             }
         });
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,9 @@ public class ActivityPerfil extends AppCompatActivity {
     Button logOut;
     ListView list;
     public static ReservationAdapter rAdapter1;
+    TextView thisUser;
+    TextView noR;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +37,28 @@ public class ActivityPerfil extends AppCompatActivity {
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
 
-        Reservations rs1 = new Reservations(allReser);
+        thisUser = findViewById(R.id.thisUser);
+        noR = findViewById(R.id.noReservations);
 
-        rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
+        String email = (String)getIntent().getSerializableExtra("USER");
 
-        list.setAdapter(rAdapter1);
+        String user = email.split("@")[0];
+
+        thisUser.setText(user);
+
+        if(!allReser.isEmpty())
+        {
+            Reservations rs1 = new Reservations(allReser);
+
+            rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
+
+            list.setAdapter(rAdapter1);
+        }
+        else
+        {
+            noR.setVisibility(View.VISIBLE);
+        }
+
 
         logOut.setOnClickListener(new View.OnClickListener()
         {
