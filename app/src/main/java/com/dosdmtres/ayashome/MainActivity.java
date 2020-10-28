@@ -246,4 +246,9 @@ public class MainActivity extends AppCompatActivity {
             Picasso.get().load(account.getPhotoUrl()).into(fotoPerfil);
         }
     }
+    static void goHome(Context context)
+    {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 }

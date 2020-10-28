@@ -45,14 +45,22 @@ public class Datos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos);
 
-        ImageView imageview = findViewById(R.id.imageView);
+        ImageView imageview = findViewById(R.id.imageView2);
+
+        imageview.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                MainActivity.goHome(Datos.this);
+            }
+        });
+
         TextView servicio = findViewById(R.id.servicio);
         TextView descripcion = findViewById(R.id.descripcion);
         TextView precio = findViewById(R.id.tvPrecio);
         Button reserva = findViewById(R.id.reserva);
         Toolbar toolbarMain = findViewById(R.id.toolbarMain2);
-        imgPerfil = findViewById(R.id.imgPerfil);
-
         imgPerfil = findViewById(R.id.imgPerfil);
         imgPerfil.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,28 +75,6 @@ public class Datos extends AppCompatActivity {
                 }
             }
         });
-        
-        String nombre;
-        nombre = getIntent().getStringExtra("NOMBRE");
-        Log.d("TAG",nombre);
-
-
-/*        for (int i = 0; i < Portada.items.size(); i++) {
-            Items item = Portada.items.get(i);
-            if (item.getNombre().equals(nombre)) {
-                descripcionItem = Portada.items.get(i).getDescripcion();
-                precioItem = Portada.items.get(i).getPrecio();
-                imageLargeItem = Portada.items.get(i).getImageLarge();
-                servicio.setText(nombre);
-                descripcion.setText(descripcionItem);
-                precio.setText(precioItem);
-
-                Log.d("TAG", nombre + descripcionItem + precioItem);
-                break; //
-            }
-        }*/
-
-        //Picasso.get().load(imageLargeItem).into(imageView);
 
     }
     void signIn()
