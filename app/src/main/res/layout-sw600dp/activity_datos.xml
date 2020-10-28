@@ -52,7 +52,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="313dp"
         android:layout_marginBottom="11dp"
-        android:text="@string/cortes"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/descripcion"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +67,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/cortesdescrip"
+
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
