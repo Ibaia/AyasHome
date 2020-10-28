@@ -7,7 +7,7 @@
     android:background="#4D235454">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgGrande"
         android:layout_width="match_parent"
         android:layout_height="360dp"
         android:src="@drawable/pelu_grande"
@@ -45,18 +45,26 @@
         app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
         app:layout_constraintStart_toEndOf="@+id/imgHeader"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imgHeader"
+        android:layout_width="194dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
+        app:layout_constraintStart_toEndOf="@+id/imgHome"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_nombre" />
 
     <ImageView
-        android:id="@+id/imgGrande"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/imgHome"
+        android:layout_width="106dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="307dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
+        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_icono" />
 
     <TextView
         android:id="@+id/servicio"
@@ -71,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imgGrande"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -79,7 +87,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="12dp"
         android:scrollbars="vertical"
@@ -87,8 +94,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvPrecio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgGrande" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvPrecio"
@@ -121,7 +127,7 @@
         android:id="@+id/imgLogo"
         android:layout_width="104dp"
         android:layout_height="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/imgGrande"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"

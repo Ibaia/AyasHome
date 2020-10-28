@@ -35,7 +35,7 @@
     </android.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgGrande"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/pelu_grande"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imgGrande"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -71,7 +71,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imgGrande"
         app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
 
     <TextView
@@ -106,7 +106,7 @@
         android:id="@+id/imgLogo"
         android:layout_width="104dp"
         android:layout_height="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/imgGrande"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
