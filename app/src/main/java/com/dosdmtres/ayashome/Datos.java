@@ -2,6 +2,8 @@ package com.dosdmtres.ayashome;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,12 +16,21 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dosdmtres.ayashome.model.Items;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import static com.dosdmtres.ayashome.Portada.items;
 
@@ -31,13 +42,14 @@ public class Datos extends AppCompatActivity {
     private TextView servicio;
     private TextView descripcion;
     private TextView precio;
-    private Button reserva;
+    private Button btnreserva;
     private Toolbar toolbarMain;
 
     String descripcionItem;
     String precioItem;
     String imageLargeItem;
     String nombreItem;
+    String emailUser;
     private EditText fecha;
     private EditText hora;
     private EditText fechaSalida;
@@ -54,11 +66,13 @@ public class Datos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos);
 
+
+        //Declare butons and other attributes that we will need
         ImageView imgItem = findViewById(R.id.imgGrande);
         TextView tvServicio = findViewById(R.id.servicio);
         TextView tvDescripcion = findViewById(R.id.descripcion);
         TextView tvPrecio = findViewById(R.id.tvPrecio);
-        reserva = findViewById(R.id.reserva);
+        btnreserva = findViewById(R.id.reserva);
         fecha = findViewById(R.id.etFecha);
         hora = findViewById(R.id.etHora);
         fechaSalida = findViewById(R.id.etFechaSalida);
@@ -69,10 +83,29 @@ public class Datos extends AppCompatActivity {
         precioItem = getIntent().getStringExtra("PRECIO");
         imageLargeItem = getIntent().getStringExtra("IMAGEN");
 
+        //Dinamic load with data from the previous activity
         tvDescripcion.setText(descripcionItem);
         tvPrecio.setText(precioItem);
         tvServicio.setText(nombreItem);
 
+        //check if you are logged
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account == null)
+        {
+            btnreserva.setActivated(false);
+
+            Context context = getApplicationContext();
+            String locale = Locale.getDefault().getLanguage();
+            CharSequence text = locale.equals("es") ? "Inicia session para poder hacer la reserva" : "Log in to create a reservation";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }else{
+            emailUser= account.getEmail();
+        }
+
+        //Load images
         try {
             Picasso.get().load(imageLargeItem)
                     .fit()
@@ -83,10 +116,59 @@ public class Datos extends AppCompatActivity {
         }
 
         // Calendar
-        comprobarTipoReserva();
-        comprobar();
+        comprobarTipoReserva(nombreItem);
 
+        //Reservation Button
+        btnreserva.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (fechaSalida == null){
+                    serviceReservation(nombreItem, fecha, hora,emailUser);
+                }else{
+                    serviceReservationHabitacion(nombreItem, fecha, fechaSalida, emailUser);
+                }
+
+            }
+        });
     }
+
+
+
+    private void serviceReservationHabitacion(String nombreItem, EditText fecha, EditText fechaSalida, String emailUser) {
+        Log.d("nombre", nombreItem);
+        Log.d("fecha", fecha.getText().toString());
+        Log.d("fechaSalida", fechaSalida.getText().toString());
+        Log.d("emailUser", emailUser);
+    }
+
+    private void serviceReservation(String nombreItem, EditText fecha, EditText hora, String emailUser) {
+        /*Log.d("nombre", nombreItem);
+        Log.d("fecha", fecha.getText().toString());
+        Log.d("hora", hora.getText().toString());
+        Log.d("emailUser", emailUser);*/
+
+        String horaReserva=hora.getText().toString();
+        String fechaReserva=fecha.getText().toString();
+
+        Map<String, Object> updateMap = new HashMap();
+        updateMap.put("usuario", emailUser);
+        updateMap.put("fecha", fecha);
+        updateMap.put("hora", horaReserva);
+        updateMap.put("servicio", nombreItem);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //hacemos la insert
+        db.collection("Reservas")
+                .document()
+                .set(updateMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                    }
+                });
+    }
+
+
     public void listenerBotones(View v) {
 
         switch (v.getId()) {
@@ -146,7 +228,6 @@ public class Datos extends AppCompatActivity {
 
         // Setting Max Date to next 2 years
         // dp.getDatePicker().setMaxDate(Calendar.YEAR + 1);
-
 
         dp.setTitle("Seleccionar fecha");
         dp.show();
@@ -224,10 +305,21 @@ public class Datos extends AppCompatActivity {
     }
 
     //Checks if the service is for housing or not
-    public void comprobarTipoReserva() {
-        tipoAlojamiento = true;
-        fechaSalida.setVisibility(View.VISIBLE);
-        hora.setVisibility(View.GONE);
+    private void comprobarTipoReserva(String nombreItem) {
+        String serviceName = nombreItem;
+        Log.d("servicio",serviceName);
+        if (serviceName.equals("Cama Matrimonio")||serviceName.equals("Cama doble")|| serviceName.equals("Double Bed")||serviceName.equals("King Size")){
+            tipoAlojamiento = true;
+
+            hora.setVisibility(View.GONE);
+            fechaSalida.setVisibility(View.VISIBLE);
+        }else{
+
+            tipoAlojamiento = false;
+
+            hora.setVisibility(View.VISIBLE);
+            fechaSalida.setVisibility(View.GONE);
+        }
     }
 
     //Checks if the two dates from housing are valid
@@ -279,14 +371,13 @@ public class Datos extends AppCompatActivity {
             }
         }
         if (!formularioCompleto) {
-            reserva.setEnabled(false);
+            btnreserva.setEnabled(true);
         } else {
-            reserva.setEnabled(true);
+            btnreserva.setEnabled(true);
         }
     }
 
-
-
+    //Take all the data needed to generate the
 
 
 }
