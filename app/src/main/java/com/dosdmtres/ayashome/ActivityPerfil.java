@@ -28,7 +28,6 @@ public class ActivityPerfil extends AppCompatActivity {
     TextView thisUser;
     TextView noR;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +35,6 @@ public class ActivityPerfil extends AppCompatActivity {
 
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
-
         thisUser = findViewById(R.id.thisUser);
         noR = findViewById(R.id.noReservations);
 
@@ -82,8 +80,7 @@ public class ActivityPerfil extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent goBack = new Intent(ActivityPerfil.this, MainActivity.class);
-                        startActivity(goBack);
+                        finish();
                     }
                 });
     }

@@ -28,6 +28,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
     static GoogleSignInClient mGoogleSignInClient;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
     static ArrayList<Reservation> allReser;
 
     RecyclerView rvMain;
@@ -56,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         fotoPerfil = findViewById(R.id.imgPerfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
@@ -80,13 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-/*        List<Servicios> todosServicios = new ArrayList<>();
-
-        for(int i = 0; i < Portada.servicios.size(); i++)
-        {
-            todosServicios.add(new Servicios(Portada.servicios.get(i).getNombreServicio(), Portada.servicios.get(i).getItemsArrayList()));
-        }*/
 
         Collections.sort(Portada.servicios);
 
@@ -129,10 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             updateUI(account);
-            if (account != null)
-            {
-                goReservas(account, this);
-            }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -141,8 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Method to go to the Reservas Activity
-    static void goReservas(final GoogleSignInAccount account, final Context context)
-    {
+    static void goReservas(final GoogleSignInAccount account, final Context context) {
         final String email = account.getEmail();
 
         final ArrayList<String> adminList = new ArrayList<>();
@@ -175,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 allReser = new ArrayList<>();
 
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                 db.collection("Reservas").whereEqualTo("cliente", email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
                     @Override
@@ -185,8 +174,16 @@ public class MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                             {
                                 String id = document.getId();
+                                String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
-                                String fechaSalida = document.getString("fechaSalida");
+
+                                String fechaSalida;
+                                fechaSalida = document.getString("fechaSalida");
+
+                                if (fechaSalida == null){
+                                    fechaSalida = document.getString("hora");
+                                }
+
                                 String servicio = document.getString("servicio");
 
                                 allReser.add(new Reservation("", fechaEntrada, fechaSalida, servicio, id));
@@ -201,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 allReser = new ArrayList<>();
 
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
                 db.collection("Reservas").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
                 {
                     @Override
@@ -212,7 +211,14 @@ public class MainActivity extends AppCompatActivity {
                             {
                                 String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
-                                String fechaSalida = document.getString("fechaSalida");
+
+                                String fechaSalida;
+                                fechaSalida = document.getString("fechaSalida");
+
+                                if (fechaSalida == null){
+                                    fechaSalida = document.getString("hora");
+                                }
+
                                 String servicio = document.getString("servicio");
                                 String id = document.getId();
 
@@ -233,22 +239,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         updateUI(account);
     }
 
-    private void updateUI(GoogleSignInAccount account)
-    {
+    //Change the image of the profile
+    private void updateUI(GoogleSignInAccount account) {
         if(account == null)
         {
             fotoPerfil.setImageResource(R.drawable.user);
         }
         else
         {
-            fotoPerfil.setImageResource(R.drawable.comida);
+            if (account.getPhotoUrl() == null){
+                fotoPerfil.setImageResource(R.drawable.user);
+            }else{
+                Picasso.get().load(account.getPhotoUrl()).into(fotoPerfil);
+            }
         }
+    }
+
+    //Redirect to main activity
+    static void goHome(Context context)
+    {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
     }
 }
