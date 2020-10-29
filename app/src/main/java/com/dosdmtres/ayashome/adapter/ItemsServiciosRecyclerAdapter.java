@@ -55,14 +55,13 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
         } catch (Exception e) {
             holder.itemImage.setImageResource(R.drawable.logo_icono);
         }
+
         holder.itemImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 Intent intent = new Intent(context, Datos.class);
-
-
 
                 intent.putExtra("NOMBRE", itemsList.get(fPosition).getNombre());
                 intent.putExtra("DESCRIPCION", itemsList.get(fPosition).getDescripcion());

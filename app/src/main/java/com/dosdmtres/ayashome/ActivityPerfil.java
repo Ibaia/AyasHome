@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class ActivityPerfil extends AppCompatActivity {
     Button logOut;
     ListView list;
     public static ReservationAdapter rAdapter1;
+    TextView thisUser;
+    TextView noR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,28 @@ public class ActivityPerfil extends AppCompatActivity {
 
         logOut = findViewById(R.id.button);
         list = findViewById(R.id.rList);
+        thisUser = findViewById(R.id.thisUser);
+        noR = findViewById(R.id.noReservations);
 
-        Reservations rs1 = new Reservations(allReser);
+        String email = (String)getIntent().getSerializableExtra("USER");
 
-        rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
+        String user = email.split("@")[0];
 
-        list.setAdapter(rAdapter1);
+        thisUser.setText(user);
+
+        if(!allReser.isEmpty())
+        {
+            Reservations rs1 = new Reservations(allReser);
+
+            rAdapter1 = new ReservationAdapter(ActivityPerfil.this, rs1);
+
+            list.setAdapter(rAdapter1);
+        }
+        else
+        {
+            noR.setVisibility(View.VISIBLE);
+        }
+
 
         logOut.setOnClickListener(new View.OnClickListener()
         {
@@ -61,8 +80,7 @@ public class ActivityPerfil extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent goBack = new Intent(ActivityPerfil.this, MainActivity.class);
-                        startActivity(goBack);
+                        finish();
                     }
                 });
     }

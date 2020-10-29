@@ -1,4 +1,4 @@
-<resources>
+<!--<resources>
     <string name="app_name">AyasHome</string>
     <string name="imgDescription">Perfil</string>
     <string name="titulo">"Aya's home"</string>
@@ -16,8 +16,31 @@
     <string name="cortesdescrip">Asesoramiento, diseño y corte de pelo para mujer y hombre, atendiendo a tu estructura facial y a las tendencias más actuales.</string>
 
 
+     TODO: Remove or change this placeholder text
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button">Cancelar</string>
+    <string name="todo">delete</string>
+    </resources>-->
+
+<resources>
+    <string name="app_name">AyasHome</string>
+    <string name="imgDescription">Perfil</string>
+    <string name="titulo">"Aya's home"</string>
+    <string name="fecha">Fecha:</string>
+    <string name="fechaEntrada">Fecha de entrada:</string>
+    <string name="fechaSalida">Fecha de salida:</string>
+    <string name="catering">Catering:</string>
+    <string name="logOut">Cerrar Sesión</string>
+    <string name="toast">Presione otra vez para confirmar</string>
+    <string name="fechaPlaceHolder">Fecha</string>
+    <string name="horaPlaceHolder">Hora</string>
+    <string name="botonReserva">Reservar</string>
+    <string name="logo">Logo</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="button">Cancelar</string>
     <string name="todo">delete</string>
+    <string name="user">Usuario</string>
+    <string name="textview">No hay reservas</string>
 </resources>
