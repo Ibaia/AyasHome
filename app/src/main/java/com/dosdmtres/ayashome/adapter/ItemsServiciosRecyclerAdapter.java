@@ -48,7 +48,7 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
         LoadImg loadImg = new LoadImg(holder, fPosition);
 
         new Thread(loadImg).start();
-        
+
         holder.itemImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
