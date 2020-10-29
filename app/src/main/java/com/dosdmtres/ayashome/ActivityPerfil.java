@@ -81,8 +81,6 @@ public class ActivityPerfil extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         finish();
-/*                        Intent goBack = new Intent(ActivityPerfil.this, MainActivity.class);
-                        startActivity(goBack);*/
                     }
                 });
     }
