@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +21,9 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.HandlerCompat;
 
+import com.dosdmtres.ayashome.adapter.ItemsServiciosRecyclerAdapter;
 import com.dosdmtres.ayashome.model.Items;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -41,7 +45,8 @@ import static com.dosdmtres.ayashome.Values.RC_SIGN_IN;
 import static com.dosdmtres.ayashome.Values.TAG;
 
 
-public class Datos extends AppCompatActivity {
+public class Datos extends AppCompatActivity
+{
 
     private static final String TAG = null;
     private ImageView imageView;
@@ -64,14 +69,16 @@ public class Datos extends AppCompatActivity {
     private EditText fechaSalida;
     public static Calendar calFecha;
     public static Calendar calFechaSalida;
-    private int numHora, minuto,  dia, mes, ano;
+    private int numHora, minuto, dia, mes, ano;
     private boolean formFecha = false;
     private boolean formFechaSalida = false;
     private boolean formHora = false;
     private boolean tipoAlojamiento = false;
+    ImageView imgItem;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos);
 
@@ -79,7 +86,7 @@ public class Datos extends AppCompatActivity {
         account = GoogleSignIn.getLastSignedInAccount(this);
 
         //Declare butons and other attributes that we will need
-        ImageView imgItem = findViewById(R.id.imgGrande);
+        imgItem = findViewById(R.id.imgGrande);
         TextView tvServicio = findViewById(R.id.servicio);
         TextView tvDescripcion = findViewById(R.id.descripcion);
         TextView tvPrecio = findViewById(R.id.tvPrecio);
@@ -87,6 +94,14 @@ public class Datos extends AppCompatActivity {
         fecha = findViewById(R.id.etFecha);
         hora = findViewById(R.id.etHora);
         fechaSalida = findViewById(R.id.etFechaSalida);
+
+
+        //Load image on a another thread
+        LoadImg loadImg = new LoadImg();
+
+        Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
+
+        mainThreadHandler.post(loadImg);
 
         //Push the logo to go back
         ImageView imagenLogo = findViewById(R.id.imgLogo);
@@ -101,10 +116,12 @@ public class Datos extends AppCompatActivity {
 
         //Pushing the image perfil you go to reservations
         imgPerfil = findViewById(R.id.imgPerfil);
-        imgPerfil.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        imgPerfil.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(Datos.this);
-                if(account == null)
+                if (account == null)
                 {
                     signIn();
                 }
@@ -129,16 +146,6 @@ public class Datos extends AppCompatActivity {
         //Check if you are logged
         //comprobacionCuentaUsuario();
 
-        //Load images
-        try {
-            Picasso.get().load(imageLargeItem)
-                    .fit()
-                    .centerCrop()
-                    .into(imgItem);
-        } catch (Exception e) {
-            imgItem.setImageResource(R.drawable.logo_icono);
-        }
-
         // Calendar
         comprobarTipoReserva(nombreItem);
 
@@ -147,10 +154,12 @@ public class Datos extends AppCompatActivity {
 
 
         imgPerfil = findViewById(R.id.imgPerfil);
-        imgPerfil.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        imgPerfil.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(Datos.this);
-                if(account == null)
+                if (account == null)
                 {
                     signIn();
                 }
@@ -161,11 +170,16 @@ public class Datos extends AppCompatActivity {
             }
         });
         //Reservation Button
-        btnreserva.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (calFechaSalida == null){
+        btnreserva.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (calFechaSalida == null)
+                {
                     serviceReservation(nombreItem, fecha, hora, emailUser);
-                }else{
+                }
+                else
+                {
                     serviceReservationHabitacion(nombreItem, fecha, fechaSalida, emailUser);
                 }
 
@@ -174,11 +188,11 @@ public class Datos extends AppCompatActivity {
     }
 
 
+    private void serviceReservation(String nombreItem, EditText fecha, EditText hora, String emailUser)
+    {
 
-    private void serviceReservation(String nombreItem, EditText fecha, EditText hora, String emailUser) {
-
-        String horaReserva=hora.getText().toString();
-        String fechaReserva=fecha.getText().toString();
+        String horaReserva = hora.getText().toString();
+        String fechaReserva = fecha.getText().toString();
 
         //Estruture for the insert of the reserve
         Map<String, Object> updateMap = new HashMap();
@@ -190,13 +204,13 @@ public class Datos extends AppCompatActivity {
         //Connect with the database to insert the reserve
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //hacemos la insert
-        db.collection("Reservas")
-                .document()
-                .set(updateMap)
+        db.collection("Reservas").document().set(updateMap)
                 //Create a toast that tell the user the status of the reservation when it work proprerly
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                .addOnCompleteListener(new OnCompleteListener<Void>()
+                {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
 
                         Context context = getApplicationContext();
                         CharSequence text = "Exito al añadir la reserva";
@@ -207,9 +221,11 @@ public class Datos extends AppCompatActivity {
                     }
                 })
                 //Create a toast that tell the user the status of the reservation when it work
-                .addOnFailureListener(new OnFailureListener() {
+                .addOnFailureListener(new OnFailureListener()
+                {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
+                    public void onFailure(@NonNull Exception e)
+                    {
                         Context context = getApplicationContext();
                         CharSequence text = "Error al añadir la reserva";
                         int duration = Toast.LENGTH_SHORT;
@@ -221,10 +237,11 @@ public class Datos extends AppCompatActivity {
     }
 
 
-    private void serviceReservationHabitacion(String nombreItem, EditText fecha, EditText fechaSalida, String emailUser) {
+    private void serviceReservationHabitacion(String nombreItem, EditText fecha, EditText fechaSalida, String emailUser)
+    {
 
-        String fechaSalidaET=fechaSalida.getText().toString();
-        String fechaReserva=fecha.getText().toString();
+        String fechaSalidaET = fechaSalida.getText().toString();
+        String fechaReserva = fecha.getText().toString();
 
         //Estruture for the insert of the reserve
         Map<String, Object> updateMap = new HashMap();
@@ -236,13 +253,13 @@ public class Datos extends AppCompatActivity {
         //Connect with the database to insert the reserve
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         //hacemos la insert
-        db.collection("Reservas")
-                .document()
-                .set(updateMap)
+        db.collection("Reservas").document().set(updateMap)
                 //Create a toast that tell the user the status of the reservation when it work proprerly
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                .addOnCompleteListener(new OnCompleteListener<Void>()
+                {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
 
                         Context context = getApplicationContext();
                         CharSequence text = "Exito al añadir la reserva";
@@ -253,9 +270,11 @@ public class Datos extends AppCompatActivity {
                     }
                 })
                 //Create a toast that tell the user the status of the reservation when it work
-                .addOnFailureListener(new OnFailureListener() {
+                .addOnFailureListener(new OnFailureListener()
+                {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
+                    public void onFailure(@NonNull Exception e)
+                    {
                         Context context = getApplicationContext();
                         CharSequence text = "Error al añadir la reserva";
                         int duration = Toast.LENGTH_SHORT;
@@ -266,9 +285,11 @@ public class Datos extends AppCompatActivity {
                 });
     }
 
-    public void listenerBotones(View v) {
+    public void listenerBotones(View v)
+    {
 
-        switch (v.getId()) {
+        switch (v.getId())
+        {
             case R.id.etFecha:
                 mostrarFecha();
                 break;
@@ -282,18 +303,22 @@ public class Datos extends AppCompatActivity {
     }
 
     //Methods
-    public void mostrarFecha() {
+    public void mostrarFecha()
+    {
         final Calendar calendario = Calendar.getInstance();
         dia = calendario.get(Calendar.DAY_OF_MONTH);
         mes = calendario.get(Calendar.MONTH);
         ano = calendario.get(Calendar.YEAR);
 
-        DatePickerDialog dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener()
+        {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+            {
                 //month+1 because it starts being 0
                 String a = dayOfMonth + "/" + (month + 1) + "/" + year;
-                if((month + 1) < 10) {
+                if ((month + 1) < 10)
+                {
                     a = dayOfMonth + "/" + "0" + (month + 1) + "/" + year;
                 }
                 fecha.setText(a, TextView.BufferType.EDITABLE);
@@ -302,14 +327,16 @@ public class Datos extends AppCompatActivity {
 
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
-                if (esLunes) {
+                if (esLunes)
+                {
                     CharSequence text = "Por favor, seleccione un día que no sea lunes.";
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 
                     toast.show();
                     formFecha = false;
                 }
-                else {
+                else
+                {
                     formFecha = true;
                 }
                 calFecha = calendario;
@@ -348,18 +375,23 @@ public class Datos extends AppCompatActivity {
         }
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask)
+    {
+        try
+        {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
             updateUI(account);
-        } catch (ApiException e) {
+        }
+        catch (ApiException e)
+        {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
+
     @Override
     protected void onStart()
     {
@@ -370,7 +402,7 @@ public class Datos extends AppCompatActivity {
 
     private void updateUI(GoogleSignInAccount account)
     {
-        if(account == null)
+        if (account == null)
         {
             imgPerfil.setImageResource(R.drawable.user);
         }
@@ -379,18 +411,23 @@ public class Datos extends AppCompatActivity {
             Picasso.get().load(account.getPhotoUrl()).into(imgPerfil);
         }
     }
-    public void mostrarFechaSalida() {
+
+    public void mostrarFechaSalida()
+    {
         final Calendar calendario = Calendar.getInstance();
         dia = calendario.get(Calendar.DAY_OF_MONTH);
         mes = calendario.get(Calendar.MONTH);
         ano = calendario.get(Calendar.YEAR);
 
-        DatePickerDialog dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dp = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener()
+        {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+            {
                 //month+1 because it starts being 0
                 String a = dayOfMonth + "/" + (month + 1) + "/" + year;
-                if((month + 1) < 10) {
+                if ((month + 1) < 10)
+                {
                     a = dayOfMonth + "/" + "0" + (month + 1) + "/" + year;
                 }
                 fechaSalida.setText(a, TextView.BufferType.EDITABLE);
@@ -399,14 +436,16 @@ public class Datos extends AppCompatActivity {
 
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
-                if (esLunes) {
+                if (esLunes)
+                {
                     CharSequence text = "Por favor, seleccione un día que no sea lunes.";
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 
                     toast.show();
                     formFechaSalida = false;
                 }
-                else {
+                else
+                {
                     formFechaSalida = true;
                 }
                 calFechaSalida = calendario;
@@ -427,16 +466,20 @@ public class Datos extends AppCompatActivity {
     }
 
     //Checks if the selected time is valid
-    public void mostrarHora() {
+    public void mostrarHora()
+    {
         final Calendar calendarioHora = Calendar.getInstance();
         numHora = calendarioHora.get(Calendar.HOUR_OF_DAY);
         minuto = calendarioHora.get(Calendar.MINUTE);
 
-        TimePickerDialog tp = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog tp = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener()
+        {
             @Override
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+            {
                 String a = hourOfDay + ":" + minute;
-                if(minute < 10) {
+                if (minute < 10)
+                {
                     a = hourOfDay + ":" + "0" + minute;
                 }
                 hora.setText(a, TextView.BufferType.EDITABLE);
@@ -451,14 +494,18 @@ public class Datos extends AppCompatActivity {
     }
 
     //Checks if the service is for housing or not
-    private void comprobarTipoReserva(String nombreItem) {
+    private void comprobarTipoReserva(String nombreItem)
+    {
         String serviceName = nombreItem;
-        if (serviceName.equals("Cama Matrimonio")||serviceName.equals("Cama doble")|| serviceName.equals("Double Bed")||serviceName.equals("King Size")){
+        if (serviceName.equals("Cama Matrimonio") || serviceName.equals("Cama doble") || serviceName.equals("Double Bed") || serviceName.equals("King Size"))
+        {
             tipoAlojamiento = true;
 
             hora.setVisibility(View.GONE);
             fechaSalida.setVisibility(View.VISIBLE);
-        }else{
+        }
+        else
+        {
             tipoAlojamiento = false;
             hora.setVisibility(View.VISIBLE);
             fechaSalida.setVisibility(View.GONE);
@@ -467,26 +514,38 @@ public class Datos extends AppCompatActivity {
 
     //Checks if the two dates from housing are valid
     //if the final date id smaller than the first, or the same,
-    public void comprobarEntreFechas() {
-        if (tipoAlojamiento == true) {
-            if (calFecha != null && calFechaSalida != null) {
-                if ((calFechaSalida.get(Calendar.YEAR) - calFecha.get(Calendar.YEAR) >= 0)) {
-                    if ((calFechaSalida.get(Calendar.MONTH) - calFecha.get(Calendar.MONTH) >= 0)) {
-                        if ((calFechaSalida.get(Calendar.DAY_OF_MONTH) - calFecha.get(Calendar.DAY_OF_MONTH) > 0)) {
+    public void comprobarEntreFechas()
+    {
+        if (tipoAlojamiento == true)
+        {
+            if (calFecha != null && calFechaSalida != null)
+            {
+                if ((calFechaSalida.get(Calendar.YEAR) - calFecha.get(Calendar.YEAR) >= 0))
+                {
+                    if ((calFechaSalida.get(Calendar.MONTH) - calFecha.get(Calendar.MONTH) >= 0))
+                    {
+                        if ((calFechaSalida.get(Calendar.DAY_OF_MONTH) - calFecha.get(Calendar.DAY_OF_MONTH) > 0))
+                        {
                             formFechaSalida = true;
                             fechaSalida.setTextColor(0xff000000);
                             fecha.setTextColor(0xff000000);
-                        } else {
+                        }
+                        else
+                        {
                             formFechaSalida = false;
                             fechaSalida.setTextColor(0xFFFF0000);
                             fecha.setTextColor(0xFFFF0000);
                         }
-                    } else {
+                    }
+                    else
+                    {
                         formFechaSalida = false;
                         fechaSalida.setTextColor(0xFFFF0000);
                         fecha.setTextColor(0xFFFF0000);
                     }
-                } else {
+                }
+                else
+                {
                     formFechaSalida = false;
                     fechaSalida.setTextColor(0xFFFF0000);
                     fecha.setTextColor(0xFFFF0000);
@@ -495,9 +554,12 @@ public class Datos extends AppCompatActivity {
 
         }
     }
+
     //Check if the user is logged
-    private void comprobacionCuentaUsuario() {
-        if(account == null) {
+    private void comprobacionCuentaUsuario()
+    {
+        if (account == null)
+        {
             Context context = getApplicationContext();
             String locale = Locale.getDefault().getLanguage();
             CharSequence text = locale.equals("es") ? "Inicia session para poder hacer la reserva" : "Log in to create a reservation";
@@ -505,37 +567,69 @@ public class Datos extends AppCompatActivity {
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-        }else{
-            emailUser= account.getEmail();
+        }
+        else
+        {
+            emailUser = account.getEmail();
             Log.d("email", emailUser);
         }
 
     }
 
     //check if the form is correct and completed
-    public void comprobar() {
+    public void comprobar()
+    {
         boolean formularioCompleto = false;
         //Check if you are logged
         comprobacionCuentaUsuario();
 
-        if (!tipoAlojamiento) {
-            if (formFecha && formHora && account != null) {
+        if (!tipoAlojamiento)
+        {
+            if (formFecha && formHora && account != null)
+            {
                 formularioCompleto = true;
-            } else {
-                formularioCompleto = false;
             }
-        } else {
-            if (formFecha && formFechaSalida && account != null) {
-                formularioCompleto = true;
-            } else {
+            else
+            {
                 formularioCompleto = false;
             }
         }
-        if (!formularioCompleto) {
+        else
+        {
+            if (formFecha && formFechaSalida && account != null)
+            {
+                formularioCompleto = true;
+            }
+            else
+            {
+                formularioCompleto = false;
+            }
+        }
+        if (!formularioCompleto)
+        {
             btnreserva.setEnabled(false);
-        } else {
+        }
+        else
+        {
             btnreserva.setEnabled(true);
         }
     }
 
+    //Runnable to load the image from the web
+    class LoadImg implements Runnable
+    {
+        @Override
+        public void run()
+        {
+            //Load images
+            try
+            {
+                Picasso.get().load(imageLargeItem).fit().centerCrop().into(imgItem);
+            }
+            catch (Exception e)
+            {
+                imgItem.setImageResource(R.drawable.logo_icono);
+            }
+        }
+    }
 }
