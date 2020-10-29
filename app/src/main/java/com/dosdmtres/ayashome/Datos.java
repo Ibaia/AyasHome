@@ -20,6 +20,7 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.os.HandlerCompat;
 
 import com.dosdmtres.ayashome.model.Items;
@@ -74,6 +75,7 @@ public class Datos extends AppCompatActivity {
     private boolean tipoAlojamiento = false;
     private Calendar maxDate;
     private ImageView imgItem;
+    private SwitchCompat catering;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,7 @@ public class Datos extends AppCompatActivity {
         TextView tvDescripcion = findViewById(R.id.descripcion);
         TextView tvPrecio = findViewById(R.id.tvPrecio);
 
+        catering = findViewById(R.id.switchCatering);
         imgItem = findViewById(R.id.imgGrande);
         btnreserva = findViewById(R.id.reserva);
         fecha = findViewById(R.id.etFecha);
@@ -458,11 +461,13 @@ public class Datos extends AppCompatActivity {
             tipoAlojamiento = true;
             hora.setVisibility(View.GONE);
             fechaSalida.setVisibility(View.VISIBLE);
+            catering.setVisibility(View.VISIBLE);
+
         } else {
             tipoAlojamiento = false;
             hora.setVisibility(View.VISIBLE);
             fechaSalida.setVisibility(View.GONE);
-            Log.d("TAG", "SALE HORA");
+            catering.setVisibility(View.GONE);
         }
     }
 
@@ -473,7 +478,7 @@ public class Datos extends AppCompatActivity {
         YearMonth asd = YearMonth.of(calFecha.get(Calendar.YEAR), calFecha.get(Calendar.MONTH));
         int cantidadDias = asd.lengthOfMonth();
 
-        if (tipoAlojamiento == true) {
+        if (tipoAlojamiento) {
             //If the entry date is selected, you can choose the exit date
             fechaSalida.setEnabled(calFecha != null);
         }

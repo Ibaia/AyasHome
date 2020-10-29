@@ -191,4 +191,16 @@
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchCatering"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/catering"
+        app:layout_constraintBottom_toTopOf="@+id/reserva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etFecha" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
