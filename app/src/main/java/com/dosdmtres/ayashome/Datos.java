@@ -30,6 +30,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.time.YearMonth;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -69,6 +70,7 @@ public class Datos extends AppCompatActivity {
     private boolean formFechaSalida = false;
     private boolean formHora = false;
     private boolean tipoAlojamiento = false;
+    private Calendar maxDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -313,6 +315,12 @@ public class Datos extends AppCompatActivity {
                     formFecha = true;
                 }
                 calFecha = calendario;
+                if (calFechaSalida != null && calFechaSalida.before(calFecha)) {
+                    fechaSalida.setText("");
+                    calFechaSalida = Calendar.getInstance();
+                    formFechaSalida = false;
+                    Log.d(TAG, "esto va");
+                }
 
                 comprobarEntreFechas();
                 comprobar();
@@ -424,7 +432,16 @@ public class Datos extends AppCompatActivity {
         }, ano, mes, dia);
 
         //Setting min date to the current date
-        dp.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        Calendar minDate = calFecha;
+        minDate.add(Calendar.DATE, 1);
+        dp.getDatePicker().setMinDate(minDate.getTimeInMillis());
+
+        //Setting max date
+                maxDate = calFecha;
+        while (maxDate.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            maxDate.add(Calendar.DATE, 1);
+        }
+        dp.getDatePicker().setMaxDate(maxDate.getTimeInMillis());
 
         dp.setTitle("Seleccionar fecha salida");
         dp.show();
@@ -460,44 +477,26 @@ public class Datos extends AppCompatActivity {
         String serviceName = nombreItem;
         if (serviceName.equals("Cama Matrimonio")||serviceName.equals("Cama doble")|| serviceName.equals("Double Bed")||serviceName.equals("King Size")){
             tipoAlojamiento = true;
-
             hora.setVisibility(View.GONE);
             fechaSalida.setVisibility(View.VISIBLE);
         }else{
             tipoAlojamiento = false;
             hora.setVisibility(View.VISIBLE);
             fechaSalida.setVisibility(View.GONE);
+            Log.d("TAG", "SALE HORA");
         }
     }
 
     //Checks if the two dates from housing are valid
     //if the final date id smaller than the first, or the same,
     public void comprobarEntreFechas() {
-        if (tipoAlojamiento == true) {
-            if (calFecha != null && calFechaSalida != null) {
-                if ((calFechaSalida.get(Calendar.YEAR) - calFecha.get(Calendar.YEAR) >= 0)) {
-                    if ((calFechaSalida.get(Calendar.MONTH) - calFecha.get(Calendar.MONTH) >= 0)) {
-                        if ((calFechaSalida.get(Calendar.DAY_OF_MONTH) - calFecha.get(Calendar.DAY_OF_MONTH) > 0)) {
-                            formFechaSalida = true;
-                            fechaSalida.setTextColor(0xff000000);
-                            fecha.setTextColor(0xff000000);
-                        } else {
-                            formFechaSalida = false;
-                            fechaSalida.setTextColor(0xFFFF0000);
-                            fecha.setTextColor(0xFFFF0000);
-                        }
-                    } else {
-                        formFechaSalida = false;
-                        fechaSalida.setTextColor(0xFFFF0000);
-                        fecha.setTextColor(0xFFFF0000);
-                    }
-                } else {
-                    formFechaSalida = false;
-                    fechaSalida.setTextColor(0xFFFF0000);
-                    fecha.setTextColor(0xFFFF0000);
-                }
-            }
+        //Takes the amount of days of the selected month of calFecha
+        YearMonth asd = YearMonth.of(calFecha.get(Calendar.YEAR), calFecha.get(Calendar.MONTH));
+        int cantidadDias = asd.lengthOfMonth();
 
+        if (tipoAlojamiento = true) {
+            //If the entry date is selected, you can choose the exit date
+            fechaSalida.setEnabled(calFecha != null);
         }
     }
     //Check if the user is logged

@@ -118,8 +118,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFecha"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
+        app:layout_constraintVertical_bias="0.811" />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -143,29 +143,29 @@
         android:inputType="textPersonName"
         android:onClick="listenerBotones"
         android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etFechaSalida"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintTop_toBottomOf="@+id/imgGrande"
+        app:layout_constraintVertical_bias="0.72" />
 
     <EditText
         android:id="@+id/etHora"
-        android:layout_width="62dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="136dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:ems="10"
         android:focusable="false"
         android:hint="@string/horaPlaceHolder"
         android:inputType="textPersonName"
         android:onClick="listenerBotones"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFecha" />
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etFechaSalida"
@@ -174,6 +174,7 @@
         android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:ems="10"
+        android:enabled="false"
         android:focusable="false"
         android:hint="@string/fechaSalida"
         android:inputType="textPersonName"
