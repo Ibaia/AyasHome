@@ -376,7 +376,12 @@ public class Datos extends AppCompatActivity {
         }
         else
         {
-            Picasso.get().load(account.getPhotoUrl()).into(imgPerfil);
+
+            if (account.getPhotoUrl() == null){
+                imgPerfil.setImageResource(R.drawable.user);
+            }else{
+                Picasso.get().load(account.getPhotoUrl()).into(imgPerfil);
+            }
         }
     }
     public void mostrarFechaSalida() {

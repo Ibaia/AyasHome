@@ -176,7 +176,14 @@ public class MainActivity extends AppCompatActivity {
                                 String id = document.getId();
                                 String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
-                                String fechaSalida = document.getString("fechaSalida");
+
+                                String fechaSalida;
+                                fechaSalida = document.getString("fechaSalida");
+
+                                if (fechaSalida == null){
+                                    fechaSalida = document.getString("hora");
+                                }
+
                                 String servicio = document.getString("servicio");
 
                                 allReser.add(new Reservation("", fechaEntrada, fechaSalida, servicio, id));
@@ -204,7 +211,14 @@ public class MainActivity extends AppCompatActivity {
                             {
                                 String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
-                                String fechaSalida = document.getString("fechaSalida");
+
+                                String fechaSalida;
+                                fechaSalida = document.getString("fechaSalida");
+
+                                if (fechaSalida == null){
+                                    fechaSalida = document.getString("hora");
+                                }
+
                                 String servicio = document.getString("servicio");
                                 String id = document.getId();
 
@@ -239,7 +253,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-            Picasso.get().load(account.getPhotoUrl()).into(fotoPerfil);
+            if (account.getPhotoUrl() == null){
+                fotoPerfil.setImageResource(R.drawable.user);
+            }else{
+                Picasso.get().load(account.getPhotoUrl()).into(fotoPerfil);
+            }
         }
     }
 
