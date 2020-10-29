@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult()))
                             {
                                 String cliente = document.getString("cliente").split("@")[0];
-                                String fechaEntrada = document.getString("fechaEntrada");
+                                String fechaEntrada = document.getString("fechaEntradasdasdasda");
                                 String fechaSalida = document.getString("fechaSalida");
                                 String servicio = document.getString("servicio");
                                 String id = document.getId();

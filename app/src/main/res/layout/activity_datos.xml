@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     android:background="#4D235454">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:src="@drawable/pelu_grande"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMain"
         android:layout_width="match_parent"
@@ -45,6 +35,18 @@
         app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
         app:layout_constraintStart_toEndOf="@+id/imgHeader"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgGrande"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+
+        android:layout_marginBottom="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/servicio"
@@ -107,8 +109,8 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="104dp"
-        android:layout_height="55dp"
+        android:layout_width="111dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

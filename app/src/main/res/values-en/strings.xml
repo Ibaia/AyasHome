@@ -16,4 +16,8 @@
     <string name="user">User</string>
     <string name="textview">No reservations</string>
     <string name="toast">Press again to confirm</string>
+    <string name="botonReserva">reserve</string>
+    <string name="logo">Logo</string>
+    <string name="horaPlaceHolder">Time</string>
+    <string name="fechaPlaceHolder">Date</string>
 </resources>
