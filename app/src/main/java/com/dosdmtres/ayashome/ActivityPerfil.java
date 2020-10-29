@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ import static com.dosdmtres.ayashome.MainActivity.mGoogleSignInClient;
 public class ActivityPerfil extends AppCompatActivity {
 
     Button logOut;
+    Button btnHome;
     ListView list;
     public static ReservationAdapter rAdapter1;
     TextView thisUser;
@@ -37,6 +39,17 @@ public class ActivityPerfil extends AppCompatActivity {
         list = findViewById(R.id.rList);
         thisUser = findViewById(R.id.thisUser);
         noR = findViewById(R.id.noReservations);
+        btnHome = findViewById(R.id.btnHome);
+
+        //Push the logo to go back
+        btnHome.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                MainActivity.goHome(ActivityPerfil.this);
+            }
+        });
 
         String email = (String)getIntent().getSerializableExtra("USER");
 
