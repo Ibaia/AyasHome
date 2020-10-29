@@ -14,7 +14,7 @@
         android:layout_marginTop="130dp"
         android:gravity="end"
         android:textAlignment="textEnd"
-
+        android:textColor="@color/textColor"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +27,7 @@
         android:layout_height="100dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
+        android:textColor="@color/textColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

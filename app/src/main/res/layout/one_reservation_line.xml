@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFDFDF">
+    android:background="@color/BackgroundColorReservas">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         app:layout_constrainedWidth="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +30,7 @@
             android:scrollbarAlwaysDrawVerticalTrack="false"
             android:scrollbars="vertical"
             android:scrollHorizontally="false"
+            android:textColor="@color/textColor"
             android:textIsSelectable="true"
             android:textSize="12sp" />
 
@@ -39,6 +42,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:maxWidth="5dp"
+            android:textColor="@color/textColor"
             android:textSize="12sp" />
 
         <TextView
@@ -49,6 +53,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:maxWidth="5dp"
+            android:textColor="@color/textColor"
             android:textSize="12sp" />
 
         <TextView
@@ -68,6 +73,7 @@
             android:layout_weight="1"
             android:background="#EA1E1E"
             android:contentDescription="@string/todo"
+
             app:srcCompat="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 

@@ -494,7 +494,7 @@ public class Datos extends AppCompatActivity {
         YearMonth asd = YearMonth.of(calFecha.get(Calendar.YEAR), calFecha.get(Calendar.MONTH));
         int cantidadDias = asd.lengthOfMonth();
 
-        if (tipoAlojamiento = true) {
+        if (tipoAlojamiento == true) {
             //If the entry date is selected, you can choose the exit date
             fechaSalida.setEnabled(calFecha != null);
         }

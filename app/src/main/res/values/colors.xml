@@ -3,4 +3,9 @@
     <color name="colorPrimary">#cd5c5c</color>
     <color name="colorPrimaryDark">#db4e4e</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <!--for normal/light mode -->
+    <color name="BackgroundColor">#0D3A8B8B</color>
+    <color name="BackgroundColorReservas">#0D3A8B8B</color>
+    <color name="textColor">#131313</color>
 </resources>
