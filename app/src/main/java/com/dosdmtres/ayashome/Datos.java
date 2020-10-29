@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.HandlerCompat;
 
 import com.dosdmtres.ayashome.model.Items;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -65,12 +67,13 @@ public class Datos extends AppCompatActivity {
     private EditText fechaSalida;
     public static Calendar calFecha;
     public static Calendar calFechaSalida;
-    private int numHora, minuto,  dia, mes, ano;
+    private int numHora, minuto, dia, mes, ano;
     private boolean formFecha = false;
     private boolean formFechaSalida = false;
     private boolean formHora = false;
     private boolean tipoAlojamiento = false;
     private Calendar maxDate;
+    private ImageView imgItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,10 +84,11 @@ public class Datos extends AppCompatActivity {
         account = GoogleSignIn.getLastSignedInAccount(this);
 
         //Declare butons and other attributes that we will need
-        ImageView imgItem = findViewById(R.id.imgGrande);
         TextView tvServicio = findViewById(R.id.servicio);
         TextView tvDescripcion = findViewById(R.id.descripcion);
         TextView tvPrecio = findViewById(R.id.tvPrecio);
+
+        imgItem = findViewById(R.id.imgGrande);
         btnreserva = findViewById(R.id.reserva);
         fecha = findViewById(R.id.etFecha);
         hora = findViewById(R.id.etHora);
@@ -92,11 +96,9 @@ public class Datos extends AppCompatActivity {
 
         //Push the logo to go back
         ImageView imagenLogo = findViewById(R.id.imgLogo);
-        imagenLogo.setOnClickListener(new View.OnClickListener()
-        {
+        imagenLogo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 MainActivity.goHome(Datos.this);
             }
         });
@@ -106,12 +108,9 @@ public class Datos extends AppCompatActivity {
         imgPerfil.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(Datos.this);
-                if(account == null)
-                {
+                if (account == null) {
                     signIn();
-                }
-                else
-                {
+                } else {
                     MainActivity.goReservas(account, Datos.this);
                 }
             }
@@ -132,14 +131,7 @@ public class Datos extends AppCompatActivity {
         //comprobacionCuentaUsuario();
 
         //Load images
-        try {
-            Picasso.get().load(imageLargeItem)
-                    .fit()
-                    .centerCrop()
-                    .into(imgItem);
-        } catch (Exception e) {
-            imgItem.setImageResource(R.drawable.logo_icono);
-        }
+        new Thread(new LoadImg()).start();
 
         // Calendar
         comprobarTipoReserva(nombreItem);
@@ -152,12 +144,9 @@ public class Datos extends AppCompatActivity {
         imgPerfil.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(Datos.this);
-                if(account == null)
-                {
+                if (account == null) {
                     signIn();
-                }
-                else
-                {
+                } else {
                     MainActivity.goReservas(account, Datos.this);
                 }
             }
@@ -165,9 +154,9 @@ public class Datos extends AppCompatActivity {
         //Reservation Button
         btnreserva.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (calFechaSalida == null){
+                if (calFechaSalida == null) {
                     serviceReservation(nombreItem, fecha, hora, emailUser);
-                }else{
+                } else {
                     serviceReservationHabitacion(nombreItem, fecha, fechaSalida, emailUser);
                 }
 
@@ -175,12 +164,10 @@ public class Datos extends AppCompatActivity {
         });
     }
 
-
-
     private void serviceReservation(String nombreItem, EditText fecha, EditText hora, String emailUser) {
 
-        String horaReserva=hora.getText().toString();
-        String fechaReserva=fecha.getText().toString();
+        String horaReserva = hora.getText().toString();
+        String fechaReserva = fecha.getText().toString();
 
         //Estruture for the insert of the reserve
         Map<String, Object> updateMap = new HashMap();
@@ -225,8 +212,8 @@ public class Datos extends AppCompatActivity {
 
     private void serviceReservationHabitacion(String nombreItem, EditText fecha, EditText fechaSalida, String emailUser) {
 
-        String fechaSalidaET=fechaSalida.getText().toString();
-        String fechaReserva=fecha.getText().toString();
+        String fechaSalidaET = fechaSalida.getText().toString();
+        String fechaReserva = fecha.getText().toString();
 
         //Estruture for the insert of the reserve
         Map<String, Object> updateMap = new HashMap();
@@ -295,7 +282,7 @@ public class Datos extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 //month+1 because it starts being 0
                 String a = dayOfMonth + "/" + (month + 1) + "/" + year;
-                if((month + 1) < 10) {
+                if ((month + 1) < 10) {
                     a = dayOfMonth + "/" + "0" + (month + 1) + "/" + year;
                 }
                 fecha.setText(a, TextView.BufferType.EDITABLE);
@@ -310,8 +297,7 @@ public class Datos extends AppCompatActivity {
 
                     toast.show();
                     formFecha = false;
-                }
-                else {
+                } else {
                     formFecha = true;
                 }
                 calFecha = calendario;
@@ -336,19 +322,16 @@ public class Datos extends AppCompatActivity {
         dp.show();
     }
 
-    void signIn()
-    {
+    void signIn() {
         Intent signInIntent = MainActivity.mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN)
-        {
+        if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -368,30 +351,27 @@ public class Datos extends AppCompatActivity {
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
+
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         updateUI(account);
     }
 
-    private void updateUI(GoogleSignInAccount account)
-    {
-        if(account == null)
-        {
+    private void updateUI(GoogleSignInAccount account) {
+        if (account == null) {
             imgPerfil.setImageResource(R.drawable.user);
-        }
-        else
-        {
+        } else {
 
-            if (account.getPhotoUrl() == null){
+            if (account.getPhotoUrl() == null) {
                 imgPerfil.setImageResource(R.drawable.user);
-            }else{
+            } else {
                 Picasso.get().load(account.getPhotoUrl()).into(imgPerfil);
             }
         }
     }
+
     public void mostrarFechaSalida() {
         final Calendar calendario = Calendar.getInstance();
         dia = calendario.get(Calendar.DAY_OF_MONTH);
@@ -403,7 +383,7 @@ public class Datos extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 //month+1 because it starts being 0
                 String a = dayOfMonth + "/" + (month + 1) + "/" + year;
-                if((month + 1) < 10) {
+                if ((month + 1) < 10) {
                     a = dayOfMonth + "/" + "0" + (month + 1) + "/" + year;
                 }
                 fechaSalida.setText(a, TextView.BufferType.EDITABLE);
@@ -418,8 +398,7 @@ public class Datos extends AppCompatActivity {
 
                     toast.show();
                     formFechaSalida = false;
-                }
-                else {
+                } else {
                     formFechaSalida = true;
                 }
                 calFechaSalida = calendario;
@@ -437,7 +416,7 @@ public class Datos extends AppCompatActivity {
         dp.getDatePicker().setMinDate(minDate.getTimeInMillis());
 
         //Setting max date
-                maxDate = calFecha;
+        maxDate = calFecha;
         while (maxDate.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
             maxDate.add(Calendar.DATE, 1);
         }
@@ -458,7 +437,7 @@ public class Datos extends AppCompatActivity {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 String a = hourOfDay + ":" + minute;
-                if(minute < 10) {
+                if (minute < 10) {
                     a = hourOfDay + ":" + "0" + minute;
                 }
                 hora.setText(a, TextView.BufferType.EDITABLE);
@@ -475,11 +454,11 @@ public class Datos extends AppCompatActivity {
     //Checks if the service is for housing or not
     private void comprobarTipoReserva(String nombreItem) {
         String serviceName = nombreItem;
-        if (serviceName.equals("Cama Matrimonio")||serviceName.equals("Cama doble")|| serviceName.equals("Double Bed")||serviceName.equals("King Size")){
+        if (serviceName.equals("Cama Matrimonio") || serviceName.equals("Cama doble") || serviceName.equals("Double Bed") || serviceName.equals("King Size")) {
             tipoAlojamiento = true;
             hora.setVisibility(View.GONE);
             fechaSalida.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             tipoAlojamiento = false;
             hora.setVisibility(View.VISIBLE);
             fechaSalida.setVisibility(View.GONE);
@@ -499,9 +478,10 @@ public class Datos extends AppCompatActivity {
             fechaSalida.setEnabled(calFecha != null);
         }
     }
+
     //Check if the user is logged
     private void comprobacionCuentaUsuario() {
-        if(account == null) {
+        if (account == null) {
             Context context = getApplicationContext();
             String locale = Locale.getDefault().getLanguage();
             CharSequence text = locale.equals("es") ? "Inicia session para poder hacer la reserva" : "Log in to create a reservation";
@@ -509,8 +489,8 @@ public class Datos extends AppCompatActivity {
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-        }else{
-            emailUser= account.getEmail();
+        } else {
+            emailUser = account.getEmail();
             Log.d("email", emailUser);
         }
 
@@ -539,6 +519,27 @@ public class Datos extends AppCompatActivity {
             btnreserva.setEnabled(false);
         } else {
             btnreserva.setEnabled(true);
+        }
+    }
+
+    class LoadImg implements Runnable {
+        @Override
+        public void run() {
+            Handler mainHandler = HandlerCompat.createAsync(getMainLooper());
+
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Picasso.get().load(imageLargeItem)
+                                .fit()
+                                .centerCrop()
+                                .into(imgItem);
+                    } catch (Exception e) {
+                        imgItem.setImageResource(R.drawable.logo_icono);
+                    }
+                }
+            });
         }
     }
 

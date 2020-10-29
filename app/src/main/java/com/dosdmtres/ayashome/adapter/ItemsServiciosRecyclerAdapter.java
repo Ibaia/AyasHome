@@ -47,10 +47,8 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
 
         LoadImg loadImg = new LoadImg(holder, fPosition);
 
-        Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
-
-        mainThreadHandler.post(loadImg);
-
+        new Thread(loadImg).start();
+        
         holder.itemImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -82,15 +80,21 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
         @Override
         public void run()
         {
-            try {
-                Picasso.get().load(itemsList.get(fPosition).getImageMini())
-                        .fit()
-                        .centerCrop()
-                        .into(holder.itemImage);
-            } catch (Exception e) {
-                Log.e("ERROR", e.getMessage());
-                holder.itemImage.setImageResource(R.drawable.logo_icono);
-            }
+            Handler threadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
+            threadHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Picasso.get().load(itemsList.get(fPosition).getImageMini())
+                                .fit()
+                                .centerCrop()
+                                .into(holder.itemImage);
+                    } catch (Exception e) {
+                        Log.e("ERROR", e.getMessage());
+                        holder.itemImage.setImageResource(R.drawable.logo_icono);
+                    }
+                }
+            });
         }
     }
 
@@ -99,7 +103,6 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     public int getItemCount() { return itemsList.size();  }
 
     public static class ItemsServiciosViewHolder extends RecyclerView.ViewHolder{
-
         ImageView itemImage;
         TextView nombreItem;
 
