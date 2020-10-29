@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4D235454">
+    android:background="#0D3A8B8B">
 
     <ImageView
         android:id="@+id/imgGrande"
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMain"
@@ -45,6 +45,7 @@
         app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
         app:layout_constraintStart_toEndOf="@+id/imgHeader"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imgHeader"
         android:layout_width="194dp"
@@ -70,38 +71,35 @@
         android:id="@+id/servicio"
         android:layout_width="138dp"
         android:layout_height="21dp"
-        android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="313dp"
-        android:layout_marginBottom="16dp"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/descripcion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgGrande"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imgGrande" />
 
     <TextView
         android:id="@+id/descripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="12dp"
+        android:elegantTextHeight="false"
         android:scrollbars="vertical"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvPrecio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/servicio" />
 
     <TextView
         android:id="@+id/tvPrecio"
-        android:layout_width="230dp"
-        android:layout_height="32dp"
+        android:layout_width="81dp"
+        android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="44dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,13 +113,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="280dp"
         android:layout_marginEnd="43dp"
-        android:layout_marginBottom="48dp"
         android:text="@string/botonReserva"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/etFecha"
+        app:layout_constraintVertical_bias="0.466" />
 
     <ImageView
         android:id="@+id/imgLogo"
@@ -134,31 +132,29 @@
         app:srcCompat="@drawable/logo_icono" />
 
 
-
-
     <EditText
         android:id="@+id/etFecha"
         android:layout_width="136dp"
         android:layout_height="42dp"
-        android:layout_marginTop="16dp"
         android:autofillHints=""
         android:ems="10"
         android:focusable="false"
         android:hint="@string/fechaPlaceHolder"
         android:inputType="textPersonName"
         android:onClick="listenerBotones"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etFechaSalida"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrecio" />
+        app:layout_constraintTop_toBottomOf="@+id/descripcion"
+        app:layout_constraintVertical_bias="0.891" />
 
     <EditText
         android:id="@+id/etHora"
         android:layout_width="62dp"
         android:layout_height="46dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="4dp"
         android:autofillHints=""
         android:ems="10"
         android:focusable="false"
@@ -166,29 +162,27 @@
         android:inputType="textPersonName"
         android:onClick="listenerBotones"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/reserva"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.143"
+        app:layout_constraintHorizontal_bias="0.214"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFecha"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/etFecha" />
 
     <EditText
         android:id="@+id/etFechaSalida"
         android:layout_width="136dp"
         android:layout_height="42dp"
+        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:ems="10"
         android:focusable="false"
         android:hint="@string/fechaSalida"
         android:inputType="textPersonName"
         android:onClick="listenerBotones"
+        android:textAlignment="textStart"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/reserva"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.73"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPrecio"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
