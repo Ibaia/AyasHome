@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
@@ -28,7 +29,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
     static GoogleSignInClient mGoogleSignInClient;
-    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     static ArrayList<Reservation> allReser;
 
     RecyclerView rvMain;
@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         fotoPerfil = findViewById(R.id.imgPerfil);
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    goReservas(account, MainActivity.this);
+                    goReservas(account);
                 }
             }
         });
@@ -79,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+/*        List<Servicios> todosServicios = new ArrayList<>();
+
+        for(int i = 0; i < Portada.servicios.size(); i++)
+        {
+            todosServicios.add(new Servicios(Portada.servicios.get(i).getNombreServicio(), Portada.servicios.get(i).getItemsArrayList()));
+        }*/
 
         Collections.sort(Portada.servicios);
 
@@ -176,14 +185,7 @@ public class MainActivity extends AppCompatActivity {
                                 String id = document.getId();
                                 String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
-
-                                String fechaSalida;
-                                fechaSalida = document.getString("fechaSalida");
-
-                                if (fechaSalida == null){
-                                    fechaSalida = document.getString("hora");
-                                }
-
+                                String fechaSalida = document.getString("fechaSalida");
                                 String servicio = document.getString("servicio");
 
                                 allReser.add(new Reservation("", fechaEntrada, fechaSalida, servicio, id));
