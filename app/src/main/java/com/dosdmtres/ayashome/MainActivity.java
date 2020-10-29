@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Handler;
 
 import static com.dosdmtres.ayashome.Values.RC_SIGN_IN;
 import static com.dosdmtres.ayashome.Values.TAG;

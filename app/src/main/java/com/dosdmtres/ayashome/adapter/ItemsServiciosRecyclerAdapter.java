@@ -2,6 +2,8 @@ package com.dosdmtres.ayashome.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.os.HandlerCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dosdmtres.ayashome.Datos;
 import com.dosdmtres.ayashome.R;
 import com.dosdmtres.ayashome.model.Items;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.logging.LogRecord;
 
 public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsServiciosRecyclerAdapter.ItemsServiciosViewHolder> {
 
@@ -40,21 +45,55 @@ public class ItemsServiciosRecyclerAdapter extends RecyclerView.Adapter<ItemsSer
     {
         final int fPosition = position;
 
-        //holder.itemImage.setImageResource(itemsList.get(position).getImageMini());
-        holder.itemImage.setImageResource(R.drawable.comida);
+        LoadImg loadImg = new LoadImg(holder, fPosition);
+
+        Handler mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper());
+
+        mainThreadHandler.post(loadImg);
+
         holder.itemImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Log.w("NOMBRE", itemsList.get(fPosition).getNombre());
                 Intent intent = new Intent(context, Datos.class);
                 intent.putExtra("NOMBRE", itemsList.get(fPosition).getNombre());
+                intent.putExtra("DESCRIPCION", itemsList.get(fPosition).getDescripcion());
+                intent.putExtra("PRECIO", itemsList.get(fPosition).getPrecio());
+                intent.putExtra("IMAGEN",itemsList.get(fPosition).getImageLarge());
+
                 context.startActivity(intent);
             }
         });
         holder.nombreItem.setText(itemsList.get(position).getNombre());
     }
+
+    class LoadImg implements Runnable
+    {
+        ItemsServiciosViewHolder holder;
+        int fPosition;
+
+        public LoadImg(ItemsServiciosViewHolder holder, int fPosition)
+        {
+            this.holder = holder;
+            this.fPosition = fPosition;
+        }
+
+        @Override
+        public void run()
+        {
+            try {
+                Picasso.get().load(itemsList.get(fPosition).getImageMini())
+                        .fit()
+                        .centerCrop()
+                        .into(holder.itemImage);
+            } catch (Exception e) {
+                Log.e("ERROR", e.getMessage());
+                holder.itemImage.setImageResource(R.drawable.logo_icono);
+            }
+        }
+    }
+
 
     @Override
     public int getItemCount() { return itemsList.size();  }

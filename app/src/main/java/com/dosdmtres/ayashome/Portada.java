@@ -90,8 +90,8 @@ public class Portada extends AppCompatActivity
                             String nombre = document.getString("nombre" + (locale.equals("es") ? "" : "En"));
                             String descripcion = document.getString("descripcion" + (locale.equals("es") ? "" : "En"));
                             String precio = document.getString("precio");
-                            String imageMini = document.getString("urlImagen");
-                            String imageLarge = document.getString("urlMiniatura");
+                            String imageMini = document.getString("urlMiniatura");
+                            String imageLarge = document.getString("urlImagen");
 
                             items.add(new Items(nombre, descripcion, precio, imageMini, imageLarge));
                         }
