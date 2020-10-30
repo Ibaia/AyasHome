@@ -6,16 +6,25 @@
     android:layout_height="match_parent"
     android:background="#0D3A8B8B">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="55dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/precio"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvPrecio" />
+
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchCatering"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="41dp"
+        android:layout_width="112dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/catering"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvPrecio"
-        app:layout_constraintHorizontal_bias="0.66"
         app:layout_constraintStart_toEndOf="@+id/etFecha" />
 
     <ImageView
@@ -94,16 +103,13 @@
 
     <TextView
         android:id="@+id/tvPrecio"
-        android:layout_width="81dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="41dp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="216dp"
+        android:layout_marginBottom="40dp"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/reserva"

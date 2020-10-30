@@ -456,8 +456,7 @@ public class Datos extends AppCompatActivity {
 
     //Checks if the service is for housing or not
     private void comprobarTipoReserva(String nombreItem) {
-        String serviceName = nombreItem;
-        if (serviceName.equals("Cama Matrimonio") || serviceName.equals("Cama doble") || serviceName.equals("Double Bed") || serviceName.equals("King Size")) {
+        if (nombreItem.equals("Cama Matrimonio") || nombreItem.equals("Cama doble") || nombreItem.equals("Double Bed") || nombreItem.equals("King Size")) {
             tipoAlojamiento = true;
             hora.setVisibility(View.GONE);
             fechaSalida.setVisibility(View.VISIBLE);
