@@ -76,6 +76,7 @@ public class Datos extends AppCompatActivity {
     private Calendar maxDate;
     private ImageView imgItem;
     private SwitchCompat catering;
+    private String locale = Locale.getDefault().getLanguage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,7 +192,7 @@ public class Datos extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 
                         Context context = getApplicationContext();
-                        CharSequence text = "Exito al añadir la reserva";
+                        CharSequence text = locale.equals("es") ? "Exito al añadir la reserva" : "Booked successfully";
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
@@ -203,7 +204,7 @@ public class Datos extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Context context = getApplicationContext();
-                        CharSequence text = "Error al añadir la reserva";
+                        CharSequence text = locale.equals("es") ? "Error al añadir la reserva" : "Error at booking";
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
@@ -237,7 +238,7 @@ public class Datos extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 
                         Context context = getApplicationContext();
-                        CharSequence text = "Exito al añadir la reserva";
+                        CharSequence text = locale.equals("es") ? "Éxito al añadir la reserva" : "Booked successfully";
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
@@ -249,7 +250,7 @@ public class Datos extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Context context = getApplicationContext();
-                        CharSequence text = "Error al añadir la reserva";
+                        CharSequence text = locale.equals("es") ? "Error al añadir la reserva" : "Error at booking";
                         int duration = Toast.LENGTH_SHORT;
 
                         Toast toast = Toast.makeText(context, text, duration);
@@ -295,9 +296,8 @@ public class Datos extends AppCompatActivity {
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
                 if (esLunes) {
-                    CharSequence text = "Por favor, seleccione un día que no sea lunes.";
+                    CharSequence text = locale.equals("es") ? "Por favor, seleccione un día que no sea lunes." : "Please, select a day that isn't Monday";
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-
                     toast.show();
                     formFecha = false;
                 } else {
@@ -396,7 +396,7 @@ public class Datos extends AppCompatActivity {
                 int fechaSeleccionada = calendario.get(Calendar.DAY_OF_WEEK);
                 boolean esLunes = (fechaSeleccionada == Calendar.MONDAY);
                 if (esLunes) {
-                    CharSequence text = "Por favor, seleccione un día que no sea lunes.";
+                    CharSequence text = locale.equals("es") ? "Por favor, seleccione un día que no sea lunes." : "Please, select a day that isn't Monday";
                     Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
 
                     toast.show();
@@ -487,7 +487,6 @@ public class Datos extends AppCompatActivity {
     private void comprobacionCuentaUsuario() {
         if (account == null) {
             Context context = getApplicationContext();
-            String locale = Locale.getDefault().getLanguage();
             CharSequence text = locale.equals("es") ? "Inicia session para poder hacer la reserva" : "Log in to create a reservation";
             int duration = Toast.LENGTH_SHORT;
 

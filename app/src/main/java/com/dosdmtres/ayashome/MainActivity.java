@@ -83,12 +83,6 @@ public class MainActivity extends AppCompatActivity {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-/*        List<Servicios> todosServicios = new ArrayList<>();
-
-        for(int i = 0; i < Portada.servicios.size(); i++)
-        {
-            todosServicios.add(new Servicios(Portada.servicios.get(i).getNombreServicio(), Portada.servicios.get(i).getItemsArrayList()));
-        }*/
 
         Collections.sort(Portada.servicios);
 
@@ -186,7 +180,12 @@ public class MainActivity extends AppCompatActivity {
                                 String id = document.getId();
                                 String cliente = document.getString("cliente");
                                 String fechaEntrada = document.getString("fechaEntrada");
-                                String fechaSalida = document.getString("fechaSalida");
+                                String fechaSalida;
+                                fechaSalida = document.getString("fechaSalida");
+
+                                if (fechaSalida == null){
+                                    fechaSalida = document.getString("hora");
+                                }
                                 String servicio = document.getString("servicio");
 
                                 allReser.add(new Reservation("", fechaEntrada, fechaSalida, servicio, id));
