@@ -1,0 +1,315 @@
+Index: app/src/main/res/layout-sw600dp/activity_datos.xml
+===================================================================
+--- app/src/main/res/layout-sw600dp/activity_datos.xml	(revision d7bfd58f01fa4584e54bd9d94b0b44b7a5798db0)
++++ app/src/main/res/layout-sw600dp/activity_datos.xml	(revision d7bfd58f01fa4584e54bd9d94b0b44b7a5798db0)
+@@ -1,125 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:background="#4D235454">
+-
+-    <android.widget.Toolbar
+-        android:id="@+id/toolbarMain2"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:background="#DCACAC"
+-        android:minHeight="?attr/actionBarSize"
+-        android:theme="?attr/actionBarTheme"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.0"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="0.0">
+-
+-        <ImageView
+-            android:id="@+id/imgPerfil"
+-            android:layout_width="40dp"
+-            android:layout_height="40dp"
+-            android:clickable="true"
+-            android:contentDescription="@string/imgDescription"
+-            android:focusable="true"
+-            android:src="@drawable/user"
+-            android:translationX="1200dp"
+-            tools:layout_editor_absoluteX="16dp"
+-            tools:layout_editor_absoluteY="23dp" />
+-
+-    </android.widget.Toolbar>
+-
+-    <ImageView
+-        android:id="@+id/imgGrande"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:src="@drawable/pelu_grande"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.0"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
+-
+-    <TextView
+-        android:id="@+id/servicio"
+-        android:layout_width="138dp"
+-        android:layout_height="21dp"
+-        android:layout_marginStart="40dp"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginEnd="313dp"
+-        android:layout_marginBottom="11dp"
+-        android:textSize="18sp"
+-        app:layout_constraintBottom_toTopOf="@+id/descripcion"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/imgGrande"
+-        app:layout_constraintVertical_bias="1.0" />
+-
+-    <TextView
+-        android:id="@+id/descripcion"
+-        android:layout_width="0dp"
+-        android:layout_height="wrap_content"
+-        android:layout_marginStart="32dp"
+-        android:layout_marginTop="200dp"
+-        android:layout_marginEnd="32dp"
+-
+-        android:textSize="18sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
+-        app:layout_constraintStart_toEndOf="@+id/imgGrande"
+-        app:layout_constraintTop_toBottomOf="@+id/toolbarMain2" />
+-
+-    <TextView
+-        android:id="@+id/tvPrecio"
+-        android:layout_width="230dp"
+-        android:layout_height="32dp"
+-        android:layout_marginStart="450dp"
+-        android:layout_marginTop="36dp"
+-        android:text="Dia                Hora"
+-        android:textSize="18sp"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.233"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+-
+-    <Button
+-        android:id="@+id/reserva"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="24dp"
+-        android:layout_marginEnd="250dp"
+-        android:layout_marginBottom="48dp"
+-        android:text="Reservar"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="1.0"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/descripcion"
+-        app:layout_constraintVertical_bias="0.0" />
+-
+-    <ImageView
+-        android:id="@+id/imgLogo"
+-        android:layout_width="104dp"
+-        android:layout_height="55dp"
+-        app:layout_constraintBottom_toTopOf="@+id/imgGrande"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        app:layout_constraintVertical_bias="1.0"
+-        app:srcCompat="@drawable/logo_icono" />
+-
+-    <ImageView
+-        android:id="@+id/imgHeader"
+-        android:layout_width="194dp"
+-        android:layout_height="39dp"
+-        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain2"
+-        app:layout_constraintEnd_toEndOf="@+id/toolbarMain2"
+-        app:layout_constraintStart_toEndOf="@+id/imgLogo"
+-        app:layout_constraintTop_toTopOf="@+id/toolbarMain2"
+-        app:srcCompat="@drawable/logo_nombre" />
+-
+-</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout-land/activity_datos.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout-land/activity_datos.xml	(date 1603975487863)
++++ app/src/main/res/layout-land/activity_datos.xml	(date 1603975487863)
+@@ -0,0 +1,174 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="#0D3A8B8B">
++
++    <ImageView
++        android:id="@+id/imgGrande"
++        android:layout_width="326dp"
++        android:layout_height="219dp"
++        android:scaleType="center"
++        android:src="@drawable/pelu_grande"
++        app:layout_constraintEnd_toStartOf="@+id/descripcion"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/toolbarMain" />
++
++    <androidx.appcompat.widget.Toolbar
++        android:id="@+id/toolbarMain"
++        android:layout_width="match_parent"
++        android:layout_height="50dp"
++        android:background="#DCACAC"
++        android:minHeight="?attr/actionBarSize"
++        android:theme="?attr/actionBarTheme"
++        app:buttonGravity="top"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.0">
++
++    </androidx.appcompat.widget.Toolbar>
++
++    <ImageView
++        android:id="@+id/imgPerfil"
++        android:layout_width="50dp"
++        android:layout_height="50dp"
++        android:clickable="true"
++        android:contentDescription="@string/imgDescription"
++        android:focusable="true"
++        android:src="@drawable/user"
++        app:layout_constraintBottom_toTopOf="@+id/rvMain"
++        app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <ImageView
++        android:id="@+id/imgHeader"
++        android:layout_width="194dp"
++        android:layout_height="39dp"
++        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
++        app:layout_constraintEnd_toStartOf="@+id/imgPerfil"
++        app:layout_constraintHorizontal_bias="0.434"
++        app:layout_constraintStart_toEndOf="@+id/imgLogo"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.909"
++        app:srcCompat="@drawable/logo_nombre" />
++
++    <TextView
++        android:id="@+id/servicio"
++        android:layout_width="138dp"
++        android:layout_height="21dp"
++        android:layout_marginTop="10dp"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.774"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/toolbarMain" />
++
++    <TextView
++        android:id="@+id/descripcion"
++        android:layout_width="338dp"
++        android:layout_height="181dp"
++        android:layout_marginTop="8dp"
++        android:layout_marginEnd="8dp"
++        android:elegantTextHeight="false"
++        android:scrollbars="vertical"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/servicio" />
++
++    <TextView
++        android:id="@+id/tvPrecio"
++        android:layout_width="81dp"
++        android:layout_height="29dp"
++        android:layout_marginStart="8dp"
++        android:layout_marginEnd="44dp"
++        android:layout_marginBottom="41dp"
++        android:textSize="18sp"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.68"
++        app:layout_constraintStart_toStartOf="parent" />
++
++    <Button
++        android:id="@+id/reserva"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="280dp"
++        android:layout_marginEnd="43dp"
++        android:layout_marginBottom="32dp"
++        android:text="@string/botonReserva"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.78"
++        app:layout_constraintStart_toStartOf="parent" />
++
++
++    <ImageView
++        android:id="@+id/imgLogo"
++        android:layout_width="99dp"
++        android:layout_height="48dp"
++        app:layout_constraintBottom_toBottomOf="@+id/toolbarMain"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:srcCompat="@drawable/logo_icono" />
++
++    <EditText
++        android:id="@+id/etFecha"
++        android:layout_width="136dp"
++        android:layout_height="42dp"
++        android:autofillHints=""
++        android:ems="10"
++        android:focusable="false"
++        android:hint="@string/fechaPlaceHolder"
++        android:inputType="textPersonName"
++        android:onClick="listenerBotones"
++        android:textAlignment="textStart"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.141"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/imgGrande"
++        app:layout_constraintVertical_bias="0.3" />
++
++    <EditText
++        android:id="@+id/etHora"
++        android:layout_width="142dp"
++        android:layout_height="37dp"
++        android:layout_marginBottom="20dp"
++        android:autofillHints=""
++        android:ems="10"
++        android:focusable="false"
++        android:hint="@string/horaPlaceHolder"
++        android:inputType="textPersonName"
++        android:onClick="listenerBotones"
++        android:textAlignment="textStart"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.142"
++        app:layout_constraintStart_toStartOf="parent" />
++
++    <EditText
++        android:id="@+id/etFechaSalida"
++        android:layout_width="136dp"
++        android:layout_height="42dp"
++        android:layout_marginBottom="16dp"
++        android:autofillHints=""
++        android:ems="10"
++        android:enabled="false"
++        android:focusable="false"
++        android:hint="@string/fechaSalida"
++        android:inputType="textPersonName"
++        android:onClick="listenerBotones"
++        android:textAlignment="textStart"
++        android:visibility="visible"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.141"
++        app:layout_constraintStart_toStartOf="parent" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+diff --git .idea/shelf/Uncommitted_changes_before_Checkout_at_15_10_2020_8_54__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Checkout_at_15_10_2020_8_54__Default_Changelist_.xml

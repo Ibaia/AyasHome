@@ -23,6 +23,7 @@
         android:layout_width="326dp"
         android:layout_height="219dp"
         android:scaleType="center"
+        android:src="@drawable/pelu_grande"
         app:layout_constraintEnd_toStartOf="@+id/descripcion"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
