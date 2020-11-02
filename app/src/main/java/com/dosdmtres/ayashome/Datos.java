@@ -160,8 +160,10 @@ public class Datos extends AppCompatActivity {
             public void onClick(View v) {
                 if (calFechaSalida == null) {
                     serviceReservation(nombreItem, fecha, hora, emailUser);
+                    MainActivity.goHome(Datos.this);
                 } else {
                     serviceReservationHabitacion(nombreItem, fecha, fechaSalida, emailUser);
+                    MainActivity.goHome(Datos.this);
                 }
 
             }
